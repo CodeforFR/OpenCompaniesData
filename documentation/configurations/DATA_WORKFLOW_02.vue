@@ -4,10 +4,19 @@
 <!-- Do Not Remove: Saved date Thu Jun 27 12:58:21 CEST 2019 by jpy on platform Mac OS X 10.14.5 in JVM 9.0.4+11 -->
 <!-- Do Not Remove: Saving version @(#)VUE: built October 8 2015 at 1658 by tomadm on Linux 2.6.32-504.23.4.el6.x86_64 i386 JVM 1.7.0_21-b11(bits=32) -->
 <?xml version="1.0" encoding="US-ASCII"?>
-<LW-MAP xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="none" ID="0"
-    label="DATA_WORKFLOW_02.vue" created="1557058466769" x="0.0" y="0.0"
-    width="7156.4854" height="5085.9775" strokeWidth="0.0" autoSized="false">
+<LW-MAP
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="none"
+  ID="0"
+  label="DATA_WORKFLOW_02.vue"
+  created="1557058466769"
+  x="0.0"
+  y="0.0"
+  width="7156.4854"
+  height="5085.9775"
+  strokeWidth="0.0"
+  autoSized="false"
+>
     <resource referenceCreated="1561633101370"
         spec="/Users/jpy/Dropbox/_FLASK/_CODEMOS/apiviz-nuxt/documentation/configurations/DATA_WORKFLOW_02.vue"
         type="1" xsi:type="URLResource">

@@ -11,7 +11,7 @@ tags:
 
 --------
 
-The documentation is produced with : 
+The documentation is produced with :
 
   - **[Github pages](https://pages.github.com/)**
   - **[Jekyll](https://jekyllrb.com/)**
@@ -40,7 +40,7 @@ bundle update
 ```
 
 
-- Launch Jekyll server 
+- Launch Jekyll server
 
 ```bash
 jekyll serve
@@ -49,7 +49,6 @@ jekyll serve
 jekyll serve --port=4001
 ```
 
-... then check in your browser : 
+... then check in your browser :
 
-[`127.0.0.1:4000`](127.0.0.1:4000) 
-
+[`127.0.0.1:4000`](127.0.0.1:4000)

@@ -39,22 +39,22 @@ toc_sticky: true
 
 -----------
 
-## Configure your website 
+## Configure your website
 
-- set up your ApiViz configuration : 
-    
+- set up your ApiViz configuration :
+
   ```
-    - set up the global variables ; 
-    - set up your data endpoints ; 
-    - set up your authentication endpoints ; 
-    - set up your routes (pages must point out to html contents, f.e. on Github) ; 
+    - set up the global variables ;
+    - set up your data endpoints ;
+    - set up your authentication endpoints ;
+    - set up your routes (pages must point out to html contents, f.e. on Github) ;
     - set up the styles ;
-    - set up your navbar ; 
+    - set up your navbar ;
     - set up your footer ;
   ```
 
 
-- save your configuration. You should immediatly see the result.  
+- save your configuration. You should immediatly see the result.
 
 - To know more about the back-office please read the [back-office tutorial](/guide/backoffice-tuto/)
 

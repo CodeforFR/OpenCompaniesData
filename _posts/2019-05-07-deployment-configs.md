@@ -1,5 +1,5 @@
 ---
-layout : single 
+layout : single
 title : DEPLOYMENT CONFIGURATIONS
 categories:
   - guide
@@ -76,7 +76,7 @@ Apiviz can be deployed according to several configurations as follow...
 
 ------
 
-### DEPLOYMENT AS FULL CLIENT SOVEREIGNETY ON SERVICES 
+### DEPLOYMENT AS FULL CLIENT SOVEREIGNETY ON SERVICES
 
 
 {% include gallery id="sovereign" layout="half" caption="click to enlarge illustration" %}

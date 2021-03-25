@@ -1,87 +1,67 @@
 <template>
   <div>
-
     <nuxt />
 
-    <DynamicStaticRaw 
+    <DynamicStaticRaw
       :templateURL="'https://raw.githubusercontent.com/co-demos/structure/master/pages-html/codemos-footer-en.html'"
-      >
+    >
     </DynamicStaticRaw>
-
   </div>
 </template>
 
-
-
 <script>
+import { mapState, mapGetters } from "vuex";
 
-import { mapState, mapGetters } from 'vuex'
+import DynamicStaticRaw from "~/components/dynamicUX/DynamicStaticRaw.vue";
 
-import DynamicStaticRaw  from '~/components/dynamicUX/DynamicStaticRaw.vue'
-
-import { responsiveBreakpoint, findBulmaBreakpointByWidth } from "~/config/constants.js" 
+import { responsiveBreakpoint, findBulmaBreakpointByWidth } from "~/config/constants.js";
 
 export default {
-  
   components: {
     DynamicStaticRaw,
   },
 
-  head(){ 
-    
+  head() {
     return {
-      title: 'ApiViz',
+      title: "ApiViz",
       // meta: [
 
       // ],
       link: [
         // { rel: 'icon', type: 'image/x-icon', href: global.app_favicon.url },
-        { rel: 'icon', href: '/logos/logo_apiviz_icon_15.png', sizes: '21x32' },
+        { rel: "icon", href: "/logos/logo_apiviz_icon_15.png", sizes: "21x32" },
       ],
-    }
+    };
   },
 
   created() {
-    window.addEventListener("resize", this.winBreakpoint)
-    this.winBreakpoint()
+    window.addEventListener("resize", this.winBreakpoint);
+    this.winBreakpoint();
   },
 
   destroyed() {
-    window.removeEventListener("resize", this.winBreakpoint)
+    window.removeEventListener("resize", this.winBreakpoint);
   },
-  
-  data () {
-    return {
-    }
+
+  data() {
+    return {};
   },
 
   computed: {
+    ...mapState({}),
 
-    ...mapState({
-    }),
-
-    ...mapGetters({
-    })
+    ...mapGetters({}),
   },
 
   methods: {
-
     winBreakpoint() {
-      var w = window.innerWidth
-      let breakpoint = findBulmaBreakpointByWidth(w)
+      var w = window.innerWidth;
+      let breakpoint = findBulmaBreakpointByWidth(w);
       // this.windowBreakpoint = breakpoint
-      this.$store.commit('setBreakpoint', breakpoint)
+      this.$store.commit("setBreakpoint", breakpoint);
     },
-
-  }
-
-}
-
+  },
+};
 </script>
 
-
-
-
-<style>
-
-</style>
+<style></style>

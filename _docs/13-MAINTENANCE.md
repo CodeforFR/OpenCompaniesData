@@ -1,5 +1,5 @@
 ---
-layout : single 
+layout : single
 title : CREDITS
 # permalink : /meta/maintain
 # categories:
@@ -21,4 +21,3 @@ sidebar:
 
 #### Design UI-UX
 - [Elise Lalique](https://github.com/Eliselalique)
-

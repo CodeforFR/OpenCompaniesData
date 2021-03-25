@@ -1,5 +1,5 @@
 ---
-layout : single 
+layout : single
 title : SCREENSHOTS
 # permalink : /general/screenshots
 # categories:
@@ -15,7 +15,7 @@ sidebar:
 
 ------------
 
-#### MAP VIEW 
+#### MAP VIEW
 (Sonum client configuration)
 
 displays your geolocalized data, given your configuration set in backoffice
@@ -49,4 +49,3 @@ displays your data as a detailed pages, given your configuration set in backoffi
 #### ADMIN / BACKOFFICE (in development)
 
 ![BACK OFFICE VIEW](../documentation/screenshots/backoffice-sonum-02.png)
-

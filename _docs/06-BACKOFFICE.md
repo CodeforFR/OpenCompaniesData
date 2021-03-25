@@ -18,14 +18,14 @@ sidebar:
 1. go to the `/backoffice` route by clicking on the button ;
 
 
-1. set up your ApiViz configuration : 
-    
-    - set up the global variables ; 
-    - set up your data endpoints ; 
-    - set up your authentication endpoints ; 
-    - set up your routes (pages must point out to html contents, f.e. on Github) ; 
+1. set up your ApiViz configuration :
+
+    - set up the global variables ;
+    - set up your data endpoints ;
+    - set up your authentication endpoints ;
+    - set up your routes (pages must point out to html contents, f.e. on Github) ;
     - set up the styles ;
-    - set up your navbar ; 
+    - set up your navbar ;
     - set up your footer ;
 
 1. save your configuration ;

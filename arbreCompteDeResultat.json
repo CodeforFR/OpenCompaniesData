@@ -1,378 +1,378 @@
 {
-  "name": "Bénéfices",
-  "codeLiasses": [
-    "HN",
-    "310"
-  ],
   "children": {
-    "ResultatAvantImpot": {
-      "name": "Résultat courant d'avant impôts ",
-      "codeLiasses": [
-        "GW"
-      ],
-      "children": {
-        "ResultatExploitation": {
-          "name": "Résultat d'exploitation ",
-          "codeLiasses": [
-            "GG",
-            "270"
-          ],
-          "children": {
-            "ProduitsExploitation": {
-              "name": "Produits d'exploitation ",
-              "codeLiasses": [
-                "FR",
-                "232"
-              ],
-              "children": {
-                "ChiffresAffairesNet": {
-                  "name": "Chiffres d'affaires nets ",
-                  "codeLiasses": [
-                    "FJ"
-                  ],
-                  "children": {
-                    "VenteMarchandises": {
-                      "name": "Ventes de marchandises ",
-                      "codeLiasses": [
-                        "FA"
-                      ]
-                    },
-                    "ProductionVendueDeBiens": {
-                      "name": "Production vendues de biens ",
-                      "codeLiasses": [
-                        "FD"
-                      ]
-                    },
-                    "ProductionVendueDeServices": {
-                      "name": "Production vendue de services ",
-                      "codeLiasses": [
-                        "FG"
-                      ]
-                    }
-                  }
-                },
-                "ProductionStocked": {
-                  "name": "Production stockée ",
-                  "codeLiasses": [
-                    "FM",
-                    "222"
-                  ]
-                },
-                "ProductionImmobilisee": {
-                  "name": "Production immobilisée ",
-                  "codeLiasses": [
-                    "FN",
-                    "224"
-                  ]
-                },
-                "SubventionsExploitation": {
-                  "name": "Subvention d'exploitation ",
-                  "codeLiasses": [
-                    "FO",
-                    "226"
-                  ]
-                },
-                "RepriseDepreciationProvisionsTransfertChargesExploitation": {
-                  "name": "Reprises sur dépréciations, provisions (et amortissements), transfert de charges ",
-                  "codeLiasses": [
-                    "FP"
-                  ]
-                },
-                "AutresProduits": {
-                  "name": "Autres produits ",
-                  "codeLiasses": [
-                    "FQ",
-                    "230"
-                  ]
-                }
-              }
-            },
-            "ChargesExploitation": {
-              "name": "Charges d'exploitation ",
-              "codeLiasses": [
-                "GF",
-                "264"
-              ],
-              "sign": -1,
-              "children": {
-                "AchatsDeMarchandises": {
-                  "name": "Achats de marchandise (y compris droits de douane)",
-                  "codeLiasses": [
-                    "FS",
-                    "234"
-                  ]
-                },
-                "VariationStockMarchandises": {
-                  "name": "Variation de stock (marchandises)",
-                  "codeLiasses": [
-                    "FT",
-                    "236"
-                  ]
-                },
-                "AchatMatierePremiereAutreAppro": {
-                  "name": "Achat de matières premières et autres approvisionnements (et droit de douane)",
-                  "codeLiasses": [
-                    "FU",
-                    "238"
-                  ]
-                },
-                "VariationStockMatierePremiereEtAppro": {
-                  "name": "Variation de stock (matières premières et approvisionnements)",
-                  "codeLiasses": [
-                    "FV",
-                    "240"
-                  ]
-                },
-                "AutresAchatEtChargesExternes": {
-                  "name": "Autres achats et charges externes ",
-                  "codeLiasses": [
-                    "FW",
-                    "242"
-                  ]
-                },
-                "ImpotTaxesEtVersementsAssimiles": {
-                  "name": "Impôts, taxes et versements assimilés ",
-                  "codeLiasses": [
-                    "FX",
-                    "244"
-                  ]
-                },
-                "SalairesEtTraitements": {
-                  "name": "Salaires et traitements ",
-                  "codeLiasses": [
-                    "FY",
-                    "250"
-                  ]
-                },
-                "ChargesSociales": {
-                  "name": "Cotisations sociales ",
-                  "codeLiasses": [
-                    "FZ",
-                    "252"
-                  ]
-                },
-                "DotationExploitation": {
-                  "name": "DOTATIONS D'EXPLOITATION ",
-                  "codeLiasses": [],
-                  "children": {
-                    "DotationAmortissementImmobilisations": {
-                      "name": "Sur immobilisations : dotations aux amortissements ",
-                      "codeLiasses": [
-                        "GA",
-                        "254"
-                      ]
-                    },
-                    "DotationDepreciationImmobilisations": {
-                      "name": "Sur immobilisations : dotations aux dépréciations ",
-                      "codeLiasses": [
-                        "GB"
-                      ]
-                    },
-                    "DotationDepreciationActifCirculant": {
-                      "name": "Sur actif circulant : dotations aux dépréciations ",
-                      "codeLiasses": [
-                        "GC"
-                      ]
-                    },
-                    "DotationProvisions": {
-                      "name": "Dotations aux provisions ",
-                      "codeLiasses": [
-                        "GD",
-                        "256"
-                      ]
-                    }
-                  }
-                },
-                "AutresCharges": {
-                  "name": "Autres charges ",
-                  "codeLiasses": [
-                    "GE",
-                    "262"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "ResultatFinancier": {
-          "name": "Résultat financier ",
-          "codeLiasses": [
-            "GV"
-          ],
-          "children": {
-            "ProduitsFinanciers": {
-              "name": "Produits financiers ",
-              "codeLiasses": [
-                "GP",
-                "280"
-              ],
-              "children": {
-                "ProduitsFinanciersParticipations": {
-                  "name": "Produits financiers de participations",
-                  "codeLiasses": [
-                    "GJ"
-                  ]
-                },
-                "ProduitsAutresValeursMobiliereEtCreancesActifImmobilise": {
-                  "name": "Produits des autres valeurs mobilières et créances de l'actif immobilisé",
-                  "codeLiasses": [
-                    "GK"
-                  ]
-                },
-                "AutreInteretEtProduitAssimile": {
-                  "name": "Autres intérêts et produits assimilés",
-                  "codeLiasses": [
-                    "GL"
-                  ]
-                },
-                "RepriseDepreciationEtProvisionTransfertsChargesFinancier": {
-                  "name": "Reprises sur dépréciations et provisions, transferts de charges",
-                  "codeLiasses": [
-                    "GM"
-                  ]
-                },
-                "DifferencesPositivesChange": {
-                  "name": "Différences positives de change",
-                  "codeLiasses": [
-                    "GN"
-                  ]
-                },
-                "ProduitsNetsCessionsValeursMobilesPlacement": {
-                  "name": "Produits nets sur cessions de valeurs mobilières de placement",
-                  "codeLiasses": [
-                    "GO"
-                  ]
-                }
-              }
-            },
-            "ChargesFinancieres": {
-              "name": "Charges financières ",
-              "codeLiasses": [
-                "GU",
-                "294"
-              ],
-              "sign": -1,
-              "children": {
-                "DotationsFinancieresAmortissementDepreciationProvision": {
-                  "name": "Dotations financières aux amortissements, dépréciations et provisions",
-                  "codeLiasses": [
-                    "GQ"
-                  ]
-                },
-                "InteretEtChargeAssimilees": {
-                  "name": "Intérêts et charges assimilées",
-                  "codeLiasses": [
-                    "GR"
-                  ]
-                },
-                "DifferenceNegativeChange": {
-                  "name": "Différences négatives de change",
-                  "codeLiasses": [
-                    "GS"
-                  ]
-                },
-                "ChargesNetteCessionValeurMobiliereDePlacement": {
-                  "name": "Charges nettes sur cessions de valeurs mobilières de placement",
-                  "codeLiasses": [
-                    "GT"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "BenefAttribueOuPerteTransferee":{
-          "name": "Bénéfice attribué ou perte transférée",
-          "codeLiasses": [
-            "GH"
-          ]
-        },
-        "PerteSupporteeOuBenefTransfere":{
-          "name": "Perte supportée ou bénéfice transféré",
-          "codeLiasses": [
-            "GI"
-          ],
-          "sign": -1
-        }
-      }
-    },
-    "ResultatExceptionnel": {
-      "name": "Résultat exceptionnel ",
-      "codeLiasses": [
-        "HI"
-      ],
-      "children": {
-        "ProduitsExceptionnels": {
-          "name": "Produits exceptionnels ",
-          "codeLiasses": [
-            "HD",
-            "290"
-          ],
-          "children": {
-            "ProduitExceptionnelOperationGestion": {
-              "name": "Produits exceptionnels sur opérations de gestion",
-              "codeLiasses": [
-                "HA"
-              ]
-            },
-            "ProduitExceptionnelOperationCapital": {
-              "name": "Produits exceptionnels sur opérations en capital",
-              "codeLiasses": [
-                "HB"
-              ]
-            },
-            "RepriseDepreciationProvisionTransfertChargeExceptionnel": {
-              "name": "Reprises sur dépréciations et provisions, transferts de charges",
-              "codeLiasses": [
-                "HC"
-              ]
-            }
-          }
-        },
-        "ChargesExceptionnelles": {
-          "name": "Charges exceptionnelles ",
-          "codeLiasses": [
-            "HH",
-            "300"
-          ],
-          "sign": -1,
-          "children": {
-            "ChargesExceptionnelleOperationGestion": {
-              "name": "Charges exceptionnelles sur opérations de gestion",
-              "codeLiasses": [
-                "HE"
-              ]
-            },
-            "ChargesExceptionnelleOperationCapital": {
-              "name": "Charges exceptionnelles sur opérations en capital",
-              "codeLiasses": [
-                "HF"
-              ]
-            },
-            "DotationExceptionnelleAmortissementDepreciationProvision": {
-              "name": "Dotations exceptionnelles aux amortissements, dépréciations et provisions",
-              "codeLiasses": [
-                "HG"
-              ]
-            }
-          }
-        }
-      }
-    },
-    "ParticipationSalariesAuxResultats": {
-      "name": "Participation des salarié⋅es aux résultats de l'entreprise ",
-      "codeLiasses": [
-        "HJ"
-      ],
-      "sign": -1
-    },
     "ImpotsSurLesBenefices": {
-      "name": "Impôts sur les bénéfices ",
       "codeLiasses": [
         "HK",
         "306"
       ],
+      "name": "Imp\u00f4ts sur les b\u00e9n\u00e9fices ",
       "sign": -1
+    },
+    "ParticipationSalariesAuxResultats": {
+      "codeLiasses": [
+        "HJ"
+      ],
+      "name": "Participation des salari\u00e9\u22c5es aux r\u00e9sultats de l'entreprise ",
+      "sign": -1
+    },
+    "ResultatAvantImpot": {
+      "children": {
+        "BenefAttribueOuPerteTransferee": {
+          "codeLiasses": [
+            "GH"
+          ],
+          "name": "B\u00e9n\u00e9fice attribu\u00e9 ou perte transf\u00e9r\u00e9e"
+        },
+        "PerteSupporteeOuBenefTransfere": {
+          "codeLiasses": [
+            "GI"
+          ],
+          "name": "Perte support\u00e9e ou b\u00e9n\u00e9fice transf\u00e9r\u00e9",
+          "sign": -1
+        },
+        "ResultatExploitation": {
+          "children": {
+            "ChargesExploitation": {
+              "children": {
+                "AchatMatierePremiereAutreAppro": {
+                  "codeLiasses": [
+                    "FU",
+                    "238"
+                  ],
+                  "name": "Achat de mati\u00e8res premi\u00e8res et autres approvisionnements (et droit de douane)"
+                },
+                "AchatsDeMarchandises": {
+                  "codeLiasses": [
+                    "FS",
+                    "234"
+                  ],
+                  "name": "Achats de marchandise (y compris droits de douane)"
+                },
+                "AutresAchatEtChargesExternes": {
+                  "codeLiasses": [
+                    "FW",
+                    "242"
+                  ],
+                  "name": "Autres achats et charges externes "
+                },
+                "AutresCharges": {
+                  "codeLiasses": [
+                    "GE",
+                    "262"
+                  ],
+                  "name": "Autres charges "
+                },
+                "ChargesSociales": {
+                  "codeLiasses": [
+                    "FZ",
+                    "252"
+                  ],
+                  "name": "Cotisations sociales "
+                },
+                "DotationExploitation": {
+                  "children": {
+                    "DotationAmortissementImmobilisations": {
+                      "codeLiasses": [
+                        "GA",
+                        "254"
+                      ],
+                      "name": "Sur immobilisations : dotations aux amortissements "
+                    },
+                    "DotationDepreciationActifCirculant": {
+                      "codeLiasses": [
+                        "GC"
+                      ],
+                      "name": "Sur actif circulant : dotations aux d\u00e9pr\u00e9ciations "
+                    },
+                    "DotationDepreciationImmobilisations": {
+                      "codeLiasses": [
+                        "GB"
+                      ],
+                      "name": "Sur immobilisations : dotations aux d\u00e9pr\u00e9ciations "
+                    },
+                    "DotationProvisions": {
+                      "codeLiasses": [
+                        "GD",
+                        "256"
+                      ],
+                      "name": "Dotations aux provisions "
+                    }
+                  },
+                  "codeLiasses": [],
+                  "name": "DOTATIONS D'EXPLOITATION "
+                },
+                "ImpotTaxesEtVersementsAssimiles": {
+                  "codeLiasses": [
+                    "FX",
+                    "244"
+                  ],
+                  "name": "Imp\u00f4ts, taxes et versements assimil\u00e9s "
+                },
+                "SalairesEtTraitements": {
+                  "codeLiasses": [
+                    "FY",
+                    "250"
+                  ],
+                  "name": "Salaires et traitements "
+                },
+                "VariationStockMarchandises": {
+                  "codeLiasses": [
+                    "FT",
+                    "236"
+                  ],
+                  "name": "Variation de stock (marchandises)"
+                },
+                "VariationStockMatierePremiereEtAppro": {
+                  "codeLiasses": [
+                    "FV",
+                    "240"
+                  ],
+                  "name": "Variation de stock (mati\u00e8res premi\u00e8res et approvisionnements)"
+                }
+              },
+              "codeLiasses": [
+                "GF",
+                "264"
+              ],
+              "name": "Charges d'exploitation ",
+              "sign": -1
+            },
+            "ProduitsExploitation": {
+              "children": {
+                "AutresProduits": {
+                  "codeLiasses": [
+                    "FQ",
+                    "230"
+                  ],
+                  "name": "Autres produits "
+                },
+                "ChiffresAffairesNet": {
+                  "children": {
+                    "ProductionVendueDeBiens": {
+                      "codeLiasses": [
+                        "FD"
+                      ],
+                      "name": "Production vendues de biens "
+                    },
+                    "ProductionVendueDeServices": {
+                      "codeLiasses": [
+                        "FG"
+                      ],
+                      "name": "Production vendue de services "
+                    },
+                    "VenteMarchandises": {
+                      "codeLiasses": [
+                        "FA"
+                      ],
+                      "name": "Ventes de marchandises "
+                    }
+                  },
+                  "codeLiasses": [
+                    "FJ"
+                  ],
+                  "name": "Chiffres d'affaires nets "
+                },
+                "ProductionImmobilisee": {
+                  "codeLiasses": [
+                    "FN",
+                    "224"
+                  ],
+                  "name": "Production immobilis\u00e9e "
+                },
+                "ProductionStocked": {
+                  "codeLiasses": [
+                    "FM",
+                    "222"
+                  ],
+                  "name": "Production stock\u00e9e "
+                },
+                "RepriseDepreciationProvisionsTransfertChargesExploitation": {
+                  "codeLiasses": [
+                    "FP"
+                  ],
+                  "name": "Reprises sur d\u00e9pr\u00e9ciations, provisions (et amortissements), transfert de charges "
+                },
+                "SubventionsExploitation": {
+                  "codeLiasses": [
+                    "FO",
+                    "226"
+                  ],
+                  "name": "Subvention d'exploitation "
+                }
+              },
+              "codeLiasses": [
+                "FR",
+                "232"
+              ],
+              "name": "Produits d'exploitation "
+            }
+          },
+          "codeLiasses": [
+            "GG",
+            "270"
+          ],
+          "name": "R\u00e9sultat d'exploitation "
+        },
+        "ResultatFinancier": {
+          "children": {
+            "ChargesFinancieres": {
+              "children": {
+                "ChargesNetteCessionValeurMobiliereDePlacement": {
+                  "codeLiasses": [
+                    "GT"
+                  ],
+                  "name": "Charges nettes sur cessions de valeurs mobili\u00e8res de placement"
+                },
+                "DifferenceNegativeChange": {
+                  "codeLiasses": [
+                    "GS"
+                  ],
+                  "name": "Diff\u00e9rences n\u00e9gatives de change"
+                },
+                "DotationsFinancieresAmortissementDepreciationProvision": {
+                  "codeLiasses": [
+                    "GQ"
+                  ],
+                  "name": "Dotations financi\u00e8res aux amortissements, d\u00e9pr\u00e9ciations et provisions"
+                },
+                "InteretEtChargeAssimilees": {
+                  "codeLiasses": [
+                    "GR"
+                  ],
+                  "name": "Int\u00e9r\u00eats et charges assimil\u00e9es"
+                }
+              },
+              "codeLiasses": [
+                "GU",
+                "294"
+              ],
+              "name": "Charges financi\u00e8res ",
+              "sign": -1
+            },
+            "ProduitsFinanciers": {
+              "children": {
+                "AutreInteretEtProduitAssimile": {
+                  "codeLiasses": [
+                    "GL"
+                  ],
+                  "name": "Autres int\u00e9r\u00eats et produits assimil\u00e9s"
+                },
+                "DifferencesPositivesChange": {
+                  "codeLiasses": [
+                    "GN"
+                  ],
+                  "name": "Diff\u00e9rences positives de change"
+                },
+                "ProduitsAutresValeursMobiliereEtCreancesActifImmobilise": {
+                  "codeLiasses": [
+                    "GK"
+                  ],
+                  "name": "Produits des autres valeurs mobili\u00e8res et cr\u00e9ances de l'actif immobilis\u00e9"
+                },
+                "ProduitsFinanciersParticipations": {
+                  "codeLiasses": [
+                    "GJ"
+                  ],
+                  "name": "Produits financiers de participations"
+                },
+                "ProduitsNetsCessionsValeursMobilesPlacement": {
+                  "codeLiasses": [
+                    "GO"
+                  ],
+                  "name": "Produits nets sur cessions de valeurs mobili\u00e8res de placement"
+                },
+                "RepriseDepreciationEtProvisionTransfertsChargesFinancier": {
+                  "codeLiasses": [
+                    "GM"
+                  ],
+                  "name": "Reprises sur d\u00e9pr\u00e9ciations et provisions, transferts de charges"
+                }
+              },
+              "codeLiasses": [
+                "GP",
+                "280"
+              ],
+              "name": "Produits financiers "
+            }
+          },
+          "codeLiasses": [
+            "GV"
+          ],
+          "name": "R\u00e9sultat financier "
+        }
+      },
+      "codeLiasses": [
+        "GW"
+      ],
+      "name": "R\u00e9sultat courant d'avant imp\u00f4ts "
+    },
+    "ResultatExceptionnel": {
+      "children": {
+        "ChargesExceptionnelles": {
+          "children": {
+            "ChargesExceptionnelleOperationCapital": {
+              "codeLiasses": [
+                "HF"
+              ],
+              "name": "Charges exceptionnelles sur op\u00e9rations en capital"
+            },
+            "ChargesExceptionnelleOperationGestion": {
+              "codeLiasses": [
+                "HE"
+              ],
+              "name": "Charges exceptionnelles sur op\u00e9rations de gestion"
+            },
+            "DotationExceptionnelleAmortissementDepreciationProvision": {
+              "codeLiasses": [
+                "HG"
+              ],
+              "name": "Dotations exceptionnelles aux amortissements, d\u00e9pr\u00e9ciations et provisions"
+            }
+          },
+          "codeLiasses": [
+            "HH",
+            "300"
+          ],
+          "name": "Charges exceptionnelles ",
+          "sign": -1
+        },
+        "ProduitsExceptionnels": {
+          "children": {
+            "ProduitExceptionnelOperationCapital": {
+              "codeLiasses": [
+                "HB"
+              ],
+              "name": "Produits exceptionnels sur op\u00e9rations en capital"
+            },
+            "ProduitExceptionnelOperationGestion": {
+              "codeLiasses": [
+                "HA"
+              ],
+              "name": "Produits exceptionnels sur op\u00e9rations de gestion"
+            },
+            "RepriseDepreciationProvisionTransfertChargeExceptionnel": {
+              "codeLiasses": [
+                "HC"
+              ],
+              "name": "Reprises sur d\u00e9pr\u00e9ciations et provisions, transferts de charges"
+            }
+          },
+          "codeLiasses": [
+            "HD",
+            "290"
+          ],
+          "name": "Produits exceptionnels "
+        }
+      },
+      "codeLiasses": [
+        "HI"
+      ],
+      "name": "R\u00e9sultat exceptionnel "
     }
-  }
+  },
+  "codeLiasses": [
+    "HN",
+    "310"
+  ],
+  "name": "B\u00e9n\u00e9fices"
 }

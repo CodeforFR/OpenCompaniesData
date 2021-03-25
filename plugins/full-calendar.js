@@ -1,6 +1,6 @@
-console.log('+ + + plugins/full-calendar... ')
+console.log("+ + + plugins/full-calendar... ");
 
-import Vue from 'vue'
+import Vue from "vue";
 
-import FullCalendar from 'vue-full-calendar'
-Vue.use(FullCalendar)
+import FullCalendar from "vue-full-calendar";
+Vue.use(FullCalendar);

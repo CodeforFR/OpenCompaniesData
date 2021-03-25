@@ -1,48 +1,33 @@
 <template>
-  <div id="navbar-main"
-       :class="`navbar-menu ${ showNav ? 'is-active' : '' }`"
-  >
+  <div id="navbar-main" :class="`navbar-menu ${showNav ? 'is-active' : ''}`">
     <div class="navbar-end">
-
       <!-- NAVBAR ITEMS -->
-      <template
-        v-for="(link, index) in extraButtons"
-      >
-
+      <template v-for="(link, index) in extraButtons">
         <nuxt-link
           v-if="!link.is_external_link && link.link_type == 'link' && link.is_visible == true"
           :key="`'link-' + ${index}`"
-          :class="`navbar-item ${ !showNav ? 'navbar-item-hov' : '' } a-anim ${ link.has_dropdown ? 'has-dropdown is-hoverable' : '' }  `"
+          :class="`navbar-item ${!showNav ? 'navbar-item-hov' : ''} a-anim ${
+            link.has_dropdown ? 'has-dropdown is-hoverable' : ''
+          }  `"
           :to="link.link_to"
         >
-
           <!-- MAIN LINK -->
           <div
-            :class="`${ link.has_dropdown ? 'navbar-link navbar-link-top is-arrowless' : '' } ${ isItemActive(link) ? ( isDark && !showNav ? 'has-text-white' : 'has-text-primary has-text-primary-c') : '' }`"
+            :class="`${link.has_dropdown ? 'navbar-link navbar-link-top is-arrowless' : ''} ${
+              isItemActive(link) ? (isDark && !showNav ? 'has-text-white' : 'has-text-primary has-text-primary-c') : ''
+            }`"
           >
-            <span
-              v-if="link.icon_class && link.icon_class !==''"
-              class="icon"
-            >
-                <i :class="link.icon_class"></i>
+            <span v-if="link.icon_class && link.icon_class !== ''" class="icon">
+              <i :class="link.icon_class"></i>
             </span>
-            <span
-              :class="`${ isItemActive(link) ? ( isDark ? 'is-underlined-dark-c' : 'is-underlined-primary-c') : '' }`"
-            >
-              {{ translate(link, 'link_text' ) }}
+            <span :class="`${isItemActive(link) ? (isDark ? 'is-underlined-dark-c' : 'is-underlined-primary-c') : ''}`">
+              {{ translate(link, "link_text") }}
             </span>
           </div>
 
           <!-- DROPDOWNS -->
-          <div
-            v-if="link.has_dropdown"
-            class="navbar-dropdown"
-          >
-
-            <template
-              v-for="(sublink, i) in link.dropdowns"
-            >
-
+          <div v-if="link.has_dropdown" class="navbar-dropdown">
+            <template v-for="(sublink, i) in link.dropdowns">
               <a
                 v-if="!sublink.is_divider && sublink.is_external_link"
                 :key="`'sublink-ext-' + ${i}`"
@@ -50,136 +35,130 @@
                 :href="sublink.link_to"
                 @click="loadExternalURL(sublink.link_to)"
               >
-                {{ translate(sublink, 'link_text' ) }}
+                {{ translate(sublink, "link_text") }}
               </a>
 
               <nuxt-link
                 v-if="!sublink.is_divider && !sublink.is_external_link"
                 :key="`'sublink-int-' + ${i}`"
-                :class="`navbar-item a-anim ${ isActiveLink(sublink.link_to) ? 'has-text-white has-background-primary is-primary-b' : 'has-text-primary-hover-c' }`"
+                :class="`navbar-item a-anim ${
+                  isActiveLink(sublink.link_to)
+                    ? 'has-text-white has-background-primary is-primary-b'
+                    : 'has-text-primary-hover-c'
+                }`"
                 :to="sublink.link_to"
               >
-                {{ translate(sublink, 'link_text' ) }}
+                {{ translate(sublink, "link_text") }}
               </nuxt-link>
 
-
-              <hr
-                v-if="sublink.is_divider"
-                :key="`'sublink-div-' + ${i}`"
-                class="navbar-divider"
-              >
-
+              <hr v-if="sublink.is_divider" :key="`'sublink-div-' + ${i}`" class="navbar-divider" />
             </template>
-
           </div>
-
         </nuxt-link>
 
         <a
           v-if="!link.has_dropdown && link.is_external_link && link.link_type == 'link' && link.is_visible == true"
-          :class="`navbar-item ${ !showNav ? 'navbar-item-hov' : '' } a-anim`"
+          :class="`navbar-item ${!showNav ? 'navbar-item-hov' : ''} a-anim`"
           :href="link.link_to"
           :key="`'link-int-' + ${index}`"
           target="_blank"
         >
-          <span>{{ translate( link,'link_text' ) }}</span>
+          <span>{{ translate(link, "link_text") }}</span>
         </a>
 
         <hr
           v-if="link.link_type == 'link' && link.is_visible == true"
           :key="index"
           class="is-flex-touch menu-delimiter-primary-c"
-        >
-
+        />
       </template>
 
       <!-- BUTTONS LINKS -->
       <div class="buttons">
-
-        <template
-          v-for="(link, index) in navbarConfig.links_options.extra_buttons"
-        >
-
+        <template v-for="(link, index) in navbarConfig.links_options.extra_buttons">
           <nuxt-link
             v-if="!link.has_dropdown && !link.is_external_link && link.link_type == 'button' && link.is_visible == true"
-            :class="`navbar-item ${ !showNav ? 'navbar-item-hov' : '' } a-anim button is-primary is-primary-b is-outlined is-small btn-menu`"
+            :class="`navbar-item ${
+              !showNav ? 'navbar-item-hov' : ''
+            } a-anim button is-primary is-primary-b is-outlined is-small btn-menu`"
             :key="`'btnlink-ext-' + ${index}`"
             :to="link.link_to"
           >
-            <span>{{ translate( link,'link_text' ) }}</span>
+            <span>{{ translate(link, "link_text") }}</span>
           </nuxt-link>
 
           <a
             v-if="!link.has_dropdown && link.is_external_link && link.link_type == 'button' && link.is_visible == true"
-            :class="`navbar-item ${ !showNav ? 'navbar-item-hov' : '' } a-anim button is-primary is-primary-b is-outlined is-small btn-menu`"
+            :class="`navbar-item ${
+              !showNav ? 'navbar-item-hov' : ''
+            } a-anim button is-primary is-primary-b is-outlined is-small btn-menu`"
             :href="link.link_to"
             :key="`'sublink-int-' + ${index}`"
             target="_blank"
           >
-            <span>{{ translate( link,'link_text' ) }}</span>
+            <span>{{ translate(link, "link_text") }}</span>
           </a>
 
           <hr
             v-if="!link.has_dropdown && link.link_type == 'button' && link.is_visible == true"
             :key="`'sublink-div-' + ${index}`"
             class="is-flex-touch menu-delimiter-primary-c"
-          >
-
+          />
         </template>
-
       </div>
 
       <!-- LOCALES -->
-      <div v-if="languages.is_multi_lang"
-           :class="`navbar-item ${ !showNav ? 'navbar-item-hov' : '' } a-anim is-hoverable has-dropdown ${user.isLoggedin || navbarConfig.has_login ? 'no-padding-right' : ''}`"
+      <div
+        v-if="languages.is_multi_lang"
+        :class="`navbar-item ${!showNav ? 'navbar-item-hov' : ''} a-anim is-hoverable has-dropdown ${
+          user.isLoggedin || navbarConfig.has_login ? 'no-padding-right' : ''
+        }`"
       >
         <!-- LOCALES BTN -->
         <a
-          :class="`navbar-link navbar-link-top a-anim is-arrowless is-uppercase ${ navbarConfig.ui_options.background_isdark && !showNav ? 'has-text-white' : '' }`"
+          :class="`navbar-link navbar-link-top a-anim is-arrowless is-uppercase ${
+            navbarConfig.ui_options.background_isdark && !showNav ? 'has-text-white' : ''
+          }`"
         >
           {{ locale }}
         </a>
 
         <div class="navbar-dropdown">
-
           <!-- LOOP LOCALES -->
-          <a v-for="(loc, index) in languages.languages"
-             :key="index"
-             class="navbar-item a-anim is-uppercase"
-             @click="switchLocale(loc)"
+          <a
+            v-for="(loc, index) in languages.languages"
+            :key="index"
+            class="navbar-item a-anim is-uppercase"
+            @click="switchLocale(loc)"
           >
             {{ loc }}
           </a>
-
         </div>
       </div>
 
       <!-- USER DROPDOWN -->
-      <div v-if="user.isLoggedin"
-           :class="`navbar-item ${ !showNav ? 'navbar-item-hov' : '' } a-anim has-dropdown is-hoverable ${languages.is_multi_lang ? 'no-padding-left' : ''}`"
+      <div
+        v-if="user.isLoggedin"
+        :class="`navbar-item ${!showNav ? 'navbar-item-hov' : ''} a-anim has-dropdown is-hoverable ${
+          languages.is_multi_lang ? 'no-padding-left' : ''
+        }`"
       >
-
         <a class="navbar-link is-arrowless">
-          <span
-            :class="`icon is-large ${ navbarConfig.ui_options.background_isdark ? 'has-text-white' : '' }`">
+          <span :class="`icon is-large ${navbarConfig.ui_options.background_isdark ? 'has-text-white' : ''}`">
             <i class="far fa-user-circle"></i>
           </span>
         </a>
 
         <div class="navbar-dropdown is-right">
-
-          <p
-            :class="`navbar-item ${ !showNav ? 'navbar-item-hov' : '' } a-anim has-text-grey-light`">
+          <p :class="`navbar-item ${!showNav ? 'navbar-item-hov' : ''} a-anim has-text-grey-light`">
             <!-- {{ getText('hello') }}  -->
             {{ basicDict.hello[locale] }}
             {{ user.infos.name }}
           </p>
 
-          <hr class="navbar-divider">
+          <hr class="navbar-divider" />
 
-          <nuxt-link :class="`navbar-item ${ !showNav ? 'navbar-item-hov' : '' } a-anim`"
-                     :to="'/preferences'"
-          >
+          <nuxt-link :class="`navbar-item ${!showNav ? 'navbar-item-hov' : ''} a-anim`" :to="'/preferences'">
             <span class="icon">
               <i class="far fa-user"></i>
             </span>
@@ -189,11 +168,12 @@
             </span>
           </nuxt-link>
 
-          <hr class="navbar-divider">
+          <hr class="navbar-divider" />
 
-          <nuxt-link :class="`navbar-item ${ !showNav ? 'navbar-item-hov' : '' } a-anim`"
-                     v-if="isUserAdmin || isUserStaff"
-                     :to="'/backoffice'"
+          <nuxt-link
+            :class="`navbar-item ${!showNav ? 'navbar-item-hov' : ''} a-anim`"
+            v-if="isUserAdmin || isUserStaff"
+            :to="'/backoffice'"
           >
             <span class="icon">
               <i class="fas fa-cog"></i>
@@ -204,11 +184,9 @@
             </span>
           </nuxt-link>
 
-          <hr v-if="isUserAdmin || isUserStaff" class="navbar-divider">
+          <hr v-if="isUserAdmin || isUserStaff" class="navbar-divider" />
 
-          <nuxt-link class="navbar-item"
-                     :to="'/logout'"
-          >
+          <nuxt-link class="navbar-item" :to="'/logout'">
             <span class="icon">
               <i class="fas fa-sign-out-alt"></i>
             </span>
@@ -217,198 +195,182 @@
               {{ basicDict.disconnect[locale] }}
             </span>
           </nuxt-link>
-
         </div>
-
       </div>
 
       <!-- LOGIN BUTTON -->
-      <div v-if="navbarConfig.has_login && !user.isLoggedin"
-           :class="`navbar-item ${ !showNav ? 'navbar-item-hov' : '' } a-anim has-dropdown is-hoverable ${languages.is_multi_lang ? 'no-padding-left' : ''}`"
+      <div
+        v-if="navbarConfig.has_login && !user.isLoggedin"
+        :class="`navbar-item ${!showNav ? 'navbar-item-hov' : ''} a-anim has-dropdown is-hoverable ${
+          languages.is_multi_lang ? 'no-padding-left' : ''
+        }`"
       >
-        <a class="navbar-link is-arrowless"
-           :href="loginRoute.urls[0]"
-        >
-          <span
-            :class="`icon is-large ${ navbarConfig.ui_options.background_isdark ? 'has-text-white' : '' }`">
+        <a class="navbar-link is-arrowless" :href="loginRoute.urls[0]">
+          <span :class="`icon is-large ${navbarConfig.ui_options.background_isdark ? 'has-text-white' : ''}`">
             <i class="fas fa-sign-in-alt"></i>
           </span>
         </a>
       </div>
-
     </div>
 
-    <hr class="is-flex-touch menu-ender">
-
+    <hr class="is-flex-touch menu-ender" />
   </div>
 </template>
 
 <script>
-  import {mapGetters, mapState} from 'vuex'
-  import {BasicDictionnary} from "~/config/basicDict.js"
+import { mapGetters, mapState } from "vuex";
+import { BasicDictionnary } from "~/config/basicDict.js";
 
+export default {
+  name: "NavbarContent",
 
-  export default {
+  props: ["localRouteConfig", "isDark"],
 
-    name: 'NavbarContent',
+  beforeMount: function () {
+    // console.log("// NavbarConfig : ", this.NavbarConfig)
+    // console.log("// currentDatasetURI : ", this.currentDatasetURI)
+  },
 
-
-    props: [
-      'localRouteConfig',
-      'isDark'
-    ],
-
-    beforeMount: function () {
-      // console.log("// NavbarConfig : ", this.NavbarConfig)
-      // console.log("// currentDatasetURI : ", this.currentDatasetURI)
-    },
-
-    data: function () {
-      return {
-        activeLocales: false,
-        basicDict: BasicDictionnary,
-        extraButtons: [{
+  data: function () {
+    return {
+      activeLocales: false,
+      basicDict: BasicDictionnary,
+      extraButtons: [
+        {
           dropdowns: [],
           has_dropdown: false,
           help: "First menu in navbar",
           icon_class: "",
           is_external_link: false,
           is_visible: true,
-          link_text: [
-            {locale: "fr", text: "Recherche"}
-          ],
+          link_text: [{ locale: "fr", text: "Recherche" }],
           link_to: "/recherche",
           link_type: "link",
-          position: "exterior_right"
-        }]
+          position: "exterior_right",
+        },
+      ],
+    };
+  },
+
+  computed: {
+    ...mapState({
+      log: (state) => state.log,
+      user: (state) => state.user.user,
+      locale: (state) => state.locale,
+      breakpoint: (state) => state.breakpoint,
+      languages: (state) => state.config.config.global.app_languages,
+    }),
+
+    ...mapGetters({
+      showNav: "getNavbarVisibility",
+      shrinkNav: "getShrinkNav",
+      navbarConfig: "config/getNavbarConfig",
+      // appColors : 'config/getStylesConfigColors',
+    }),
+
+    loginRoute() {
+      return this.$store.getters["config/getRouteConfigByField"]("app_login");
+    },
+
+    isUserAdmin() {
+      return this.$store.getters["user/getCheckUserRole"]("admin");
+    },
+    isUserStaff() {
+      return this.$store.getters["user/getCheckUserRole"]("staff");
+    },
+  },
+
+  methods: {
+    switchLocale(loc) {
+      this.$store.commit("setLocale", loc);
+      this.activeLocales = false;
+    },
+
+    // getText(textCode) {
+    //   return this.$store.getters['config/defaultText']({txt:textCode})
+    // },
+    loadExternalURL(link_to) {
+      console.log("loadExternalURL / link_to : ", link_to);
+      var win = window.open(link_to, "_blank");
+      win.focus();
+    },
+    isActiveLink(link_to) {
+      const currentRoute = this.$route.path;
+      // console.log("isActiveLink / currentRoute : ", currentRoute)
+      const routeURL = this.localRouteConfig.urls;
+      // console.log("isActiveLink / routeURL : ", routeURL)
+      return link_to === currentRoute || routeURL.indexOf(link_to) != -1;
+    },
+    isItemActive(link) {
+      const currentRoute = this.$route.path;
+      const isLinkToRoute = this.isActiveLink(link.link_to);
+      let isSublinkRoute = false;
+      if (link.has_dropdown) {
+        const linkDropdowns = link.dropdowns;
+        const linkDropdownsList = linkDropdowns.map((e) => e.link_to);
+        isSublinkRoute = linkDropdownsList.indexOf(currentRoute) != -1;
+        // console.log("isItemActive / linkDropdownsList : ", linkDropdownsList)
       }
+      return isLinkToRoute || isSublinkRoute;
     },
 
-    computed: {
-
-      ...mapState({
-        log: state => state.log,
-        user: state => state.user.user,
-        locale: state => state.locale,
-        breakpoint: state => state.breakpoint,
-        languages: state => state.config.config.global.app_languages,
-      }),
-
-      ...mapGetters({
-        showNav: 'getNavbarVisibility',
-        shrinkNav: 'getShrinkNav',
-        navbarConfig: 'config/getNavbarConfig',
-        // appColors : 'config/getStylesConfigColors',
-      }),
-
-      loginRoute() {
-        return this.$store.getters['config/getRouteConfigByField']('app_login')
-      },
-
-      isUserAdmin() {
-        return this.$store.getters['user/getCheckUserRole']('admin')
-      },
-      isUserStaff() {
-        return this.$store.getters['user/getCheckUserRole']('staff')
-      },
-
-
+    translate(textsToTranslate, listField) {
+      let listTexts = textsToTranslate[listField];
+      return this.$Translate(listTexts, this.locale, "text");
     },
-
-    methods: {
-
-      switchLocale(loc) {
-        this.$store.commit('setLocale', loc)
-        this.activeLocales = false
-      },
-
-      // getText(textCode) {
-      //   return this.$store.getters['config/defaultText']({txt:textCode})
-      // },
-      loadExternalURL(link_to) {
-        console.log("loadExternalURL / link_to : ", link_to)
-        var win = window.open(link_to, '_blank');
-        win.focus();
-      },
-      isActiveLink(link_to) {
-        const currentRoute = this.$route.path
-        // console.log("isActiveLink / currentRoute : ", currentRoute)
-        const routeURL = this.localRouteConfig.urls
-        // console.log("isActiveLink / routeURL : ", routeURL)
-        return link_to === currentRoute || routeURL.indexOf(link_to) != -1
-      },
-      isItemActive(link) {
-        const currentRoute = this.$route.path
-        const isLinkToRoute = this.isActiveLink(link.link_to)
-        let isSublinkRoute = false
-        if (link.has_dropdown) {
-          const linkDropdowns = link.dropdowns
-          const linkDropdownsList = linkDropdowns.map(e => e.link_to);
-          isSublinkRoute = linkDropdownsList.indexOf(currentRoute) != -1
-          // console.log("isItemActive / linkDropdownsList : ", linkDropdownsList)
-        }
-        return isLinkToRoute || isSublinkRoute
-      },
-
-      translate(textsToTranslate, listField) {
-        let listTexts = textsToTranslate[listField]
-        return this.$Translate(listTexts, this.locale, 'text')
-      },
-    }
-
-  }
+  },
+};
 </script>
 
 <style lang="scss" scoped>
+@import "~/assets/css/apiviz-colors.scss";
+@import "~/assets/css/apiviz-misc.scss";
 
-  @import '~/assets/css/apiviz-colors.scss';
-  @import '~/assets/css/apiviz-misc.scss';
+.no-padding-left {
+  padding-left: 0em !important;
+}
 
-  .no-padding-left {
-    padding-left: 0em !important;
-  }
+.no-padding-right {
+  padding-right: 0em !important;
+}
 
-  .no-padding-right {
-    padding-right: 0em !important;
-  }
+.nuxt-link-active {
+  // text-decoration: underline;
+  color: $apiviz-primary;
+}
 
-  .nuxt-link-active {
-    // text-decoration: underline;
-    color: $apiviz-primary;
-  }
+.is-underlined {
+  border-bottom: solid;
+  // border-color: $apiviz-primary;
+}
 
-  .is-underlined {
-    border-bottom: solid;
-    // border-color: $apiviz-primary;
-  }
+.navbar-dropdown {
+  z-index: 100;
+}
 
-  .navbar-dropdown {
-    z-index: 100;
-  }
+.menu-delimiter {
+  margin: 0em 0em 1.5em 0em;
+  background-color: $apiviz-primary;
+}
 
-  .menu-delimiter {
-    margin: 0em 0em 1.5em 0em;
-    background-color: $apiviz-primary;
-  }
+hr.menu-ender {
+  margin: 1.5em 0em 0em 0em;
+  background-color: $apiviz-primary;
+}
 
-  hr.menu-ender {
-    margin: 1.5em 0em 0em 0em;
-    background-color: $apiviz-primary;
-  }
+// .spacer{
+//   padding: 1em 0em 1.5em 0em;
+// }
+.buttons {
+  margin-bottom: 0em;
+}
 
-  // .spacer{
-  //   padding: 1em 0em 1.5em 0em;
-  // }
-  .buttons {
-    margin-bottom: 0em;
-  }
+.btn-menu {
+  margin-left: 1em;
+  margin-bottom: 0em;
+}
 
-  .btn-menu {
-    margin-left: 1em;
-    margin-bottom: 0em;
-  }
-
-  .is-flex-touch {
-    margin-top: 1em;
-  }
+.is-flex-touch {
+  margin-top: 1em;
+}
 </style>

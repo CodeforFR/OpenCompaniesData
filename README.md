@@ -129,3 +129,22 @@ $ npm start
 # generate static project
 $ npm run generate
 ```
+
+## Code quality
+To preserve a clean codebase, we use [pre-commit](https://pre-commit.com/) for identifying issues before submission of review. To install pre-commit, you can follow the instruction [here](https://pre-commit.com/#install).
+
+Install pre-commit in the project.
+```
+pre-commit install
+```
+
+Linting files.
+```
+pre-commit run --all-files
+```
+
+Skip verifications
+To skip pre-commit verifications, you may add *--no-verify* at the end of your commitment.
+```
+git commit -m '[+] pre-commit <- documentation' --no-verify
+```

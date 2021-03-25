@@ -1,16 +1,14 @@
 <template>
   <div>
-
-
     <style type="text/css">
-      a{ 
+      a{
         color : {{appColors['link']}};
       }
-      a:hover{ 
+      a:hover{
         color : {{appColors['primary']}} ;
       }
-      .link-underlined{ 
-        text-decoration: underline;      
+      .link-underlined{
+        text-decoration: underline;
       }
       .has-bottom-border{
         border-bottom-color : {{ appColors['navbar-border-color'] }} !important;
@@ -26,11 +24,8 @@
       }
     </style>
 
-      <!-- color : {{appColors['link-hover']}} -->
-    <style 
-      v-if="navbarConfig.ui_options.navbar_items_hover_color"
-      type="text/css"
-      >
+    <!-- color : {{appColors['link-hover']}} -->
+    <style v-if="navbarConfig.ui_options.navbar_items_hover_color" type="text/css">
       .navbar-item-hov:hover {
         background-color : {{appColors[navbarConfig.ui_options.navbar_items_hover_color.bulma_color]}} !important;
       }
@@ -42,11 +37,7 @@
       }
     </style>
 
-
-    <style v-for="(cCode, index) in colorCodes" 
-      :key="index"
-      type="text/css"
-      >
+    <style v-for="(cCode, index) in colorCodes" :key="index" type="text/css">
 
       .has-text-{{ cCode }}-c{
         color : {{ appColors[cCode] }} !important ;
@@ -104,84 +95,65 @@
       .is-checkradio-c[type="checkbox"] + label::after, .is-checkradio-c[type="checkbox"] + label::after{
         border-color : {{ appColors[cCode] }} !important ;
       }
-
     </style>
 
     <!-- DEBUGGING -->
     <!-- appColors : <br><pre><code>{{ JSON.stringify(appColors, null, 1) }}</code></pre> -->
-
   </div>
 </template>
 
-
-
 <script>
-
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters } from "vuex";
 
 export default {
+  components: {},
 
-  components: {
-  },
-
-  data () {
+  data() {
     return {
+      colorCodes: [
+        "light",
+        "dark",
 
-      colorCodes : [
+        "link",
+        "link-hover",
 
-        'light' ,
-        'dark' ,
+        "primary",
+        "info",
+        "success",
+        "warning",
+        "danger",
 
-        'link' ,
-        'link-hover',
-
-        'primary' ,
-        'info' ,
-        'success' ,
-        'warning' ,
-        'danger' ,
-
-        'text-color',
+        "text-color",
       ],
-
-    }
+    };
   },
 
-  beforeMount : function(){
+  beforeMount: function () {
     // this.log && console.log('\nC-DynamicCSS.vue / beforeMount...')
     // this.log && console.log('C-DynamicCSS.vue / beforeMount / this.colorCodes : ', this.colorCodes)
   },
 
-  mounted : function(){
-    this.log && console.log('C-DynamicCSS.vue / mounted...')
-    this.log && console.log('C-DynamicCSS.vue / mounted / this.appColors : ', this.appColors)
-    this.log && console.log('C-DynamicCSS.vue / mounted / this.navbarConfig : ', this.navbarConfig)
+  mounted: function () {
+    this.log && console.log("C-DynamicCSS.vue / mounted...");
+    this.log && console.log("C-DynamicCSS.vue / mounted / this.appColors : ", this.appColors);
+    this.log && console.log("C-DynamicCSS.vue / mounted / this.navbarConfig : ", this.navbarConfig);
   },
 
   computed: {
-
     ...mapState({
-      locale : state => state.locale,
+      locale: (state) => state.locale,
     }),
 
     ...mapGetters({
-      locale : 'getCurrentLocale',
+      locale: "getCurrentLocale",
       // styles : 'config/getStylesConfig',
-      appColors : 'config/getStylesConfigColors',
-      navbarConfig : 'config/getNavbarConfig',
-    })
+      appColors: "config/getStylesConfigColors",
+      navbarConfig: "config/getNavbarConfig",
+    }),
   },
 
-  methods: {
-  }
-
-}
-
+  methods: {},
+};
 </script>
 
-
-
-
-<style>
-
-</style>
+<style></style>

@@ -1,26 +1,21 @@
-export const noCheckRoutePaths = [
-  '/new-apiviz-instance',
-  '/uuid-is-locked',
-]
+export const noCheckRoutePaths = ["/new-apiviz-instance", "/uuid-is-locked"];
 
 export const loginRoutes = [
-  '/login',
-  '/register',
+  "/login",
+  "/register",
   // '/logout',
-  '/forgot-password',
-]
+  "/forgot-password",
+];
 
 export const reservedRoutes = [
-  
-  '/login',
-  '/logout',
-  '/register',
-  '/forgot-password',
-  
-  '/backoffice',
-  '/preferences',
+  "/login",
+  "/logout",
+  "/register",
+  "/forgot-password",
 
-  '/new-apiviz-instance',
-  '/uuid-is-locked',
+  "/backoffice",
+  "/preferences",
 
-]
+  "/new-apiviz-instance",
+  "/uuid-is-locked",
+];

@@ -18,7 +18,7 @@ toc_sticky: true
 
 - Added export button on every view to get dataset as .csv file
 - Fixed dynamic CSS to implement primary color and others on every main element in views / nnavbar / buttons / etc...
-- Added ApexCharts component to complete dataviz views 
+- Added ApexCharts component to complete dataviz views
 
 ## features (2019-08-18)
 

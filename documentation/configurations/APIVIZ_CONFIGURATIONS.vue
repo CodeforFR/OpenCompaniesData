@@ -4,10 +4,19 @@
 <!-- Do Not Remove: Saved date Wed Nov 20 13:09:32 CET 2019 by jpy on platform Mac OS X 10.15 in JVM 9.0.4+11 -->
 <!-- Do Not Remove: Saving version @(#)VUE: built October 8 2015 at 1658 by tomadm on Linux 2.6.32-504.23.4.el6.x86_64 i386 JVM 1.7.0_21-b11(bits=32) -->
 <?xml version="1.0" encoding="US-ASCII"?>
-<LW-MAP xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="none" ID="0"
-    label="APIVIZ_CONFIGURATIONS.vue" created="1557058466769" x="0.0"
-    y="0.0" width="7156.4854" height="8443.781" strokeWidth="0.0" autoSized="false">
+<LW-MAP
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="none"
+  ID="0"
+  label="APIVIZ_CONFIGURATIONS.vue"
+  created="1557058466769"
+  x="0.0"
+  y="0.0"
+  width="7156.4854"
+  height="8443.781"
+  strokeWidth="0.0"
+  autoSized="false"
+>
     <resource referenceCreated="1574251772566" size="626756"
         spec="/Users/jpy/Dropbox/_FLASK/_CODEMOS/apiviz-frontend/documentation/configurations/APIVIZ_CONFIGURATIONS.vue"
         type="1" xsi:type="URLResource">

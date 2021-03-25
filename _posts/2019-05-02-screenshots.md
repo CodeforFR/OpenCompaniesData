@@ -15,7 +15,7 @@ toc_sticky: true
 
 ------------
 
-## MAP VIEW 
+## MAP VIEW
 (Sonum client configuration)
 
 displays your geolocalized data, given your configuration set in backoffice
@@ -25,7 +25,7 @@ displays your geolocalized data, given your configuration set in backoffice
 
 ------------
 
-## HEATMAP VIEW 
+## HEATMAP VIEW
 (Sonum client configuration)
 
 (in development) geographical densities of points
@@ -34,7 +34,7 @@ displays your geolocalized data, given your configuration set in backoffice
 
 ------------
 
-## LIST VIEW 
+## LIST VIEW
 (APCIS client configuration)
 
 displays your data as a cards list, given your configuration set in backoffice
@@ -43,7 +43,7 @@ displays your data as a cards list, given your configuration set in backoffice
 
 ------------
 
-## DETAIL VIEW 
+## DETAIL VIEW
 (Sonum client configation)
 
 displays your data as a detailed pages, given your configuration set in backoffice
@@ -52,10 +52,9 @@ displays your data as a detailed pages, given your configuration set in backoffi
 
 ------------
 
-## ADMIN / BACKOFFICE 
+## ADMIN / BACKOFFICE
 (in development)
 
 manage and modify your Apiviz' instance configuration from the back office
 
 {% include figure image_path="/documentation/screenshots/backoffice-sonum-06.png" alt="admin view" %}
-

@@ -1,5 +1,5 @@
 ---
-layout : single 
+layout : single
 title : DEPLOYMENT CONFIGURATIONS
 # permalink : /docs/deployments
 # categories:
@@ -34,7 +34,7 @@ Apiviz can be deployed according to several configurations as follow...
 
 ------
 
-#### DEPLOYMENT AS FULL CLIENT SOVEREIGNETY ON SERVICES 
+#### DEPLOYMENT AS FULL CLIENT SOVEREIGNETY ON SERVICES
 
 ![SERVER_C](../documentation/configurations/APIVIZ-CONFIGURATIONS-export-server-C.jpg)
 

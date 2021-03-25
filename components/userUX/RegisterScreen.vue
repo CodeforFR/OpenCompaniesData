@@ -1,14 +1,9 @@
 <template>
-
   <section class="hero has-background-white-ter is-fullheight skip-navbar">
-
     <div class="hero-body">
       <div class="container has-text-centered">
         <div class="columns is-mobile is-centered">
-
-
           <div class="column is-6" v-if="!user.isLoggedin">
-
             <p class="subtitle has-text-grey">
               <!-- NO USER ACCOUNT ? -->
               <!-- {{ getText('no_account') }} -->
@@ -16,17 +11,16 @@
             </p>
 
             <div class="box">
-              <FormRegister/>
+              <FormRegister />
             </div>
 
-            <p class="has-text-grey">              
+            <p class="has-text-grey">
               <nuxt-link :to="'/login'">
                 <!-- CREATE ACCOUNT -->
                 <!-- {{ getText('connect') }} -->
                 {{ basicDict.connect[locale] }}
               </nuxt-link>
             </p>
-
           </div>
 
           <div class="column is-6" v-if="user.isLoggedin">
@@ -34,78 +28,68 @@
               <!-- HELLO  -->
               <!-- {{ getText('hello') }} -->
               {{ basicDict.hello[locale] }}
-              {{user.infos.email}}, 
+              {{ user.infos.email }},
               <!-- IS REGISTRED -->
               <!-- {{ getText('is_registered') }} -->
               {{ basicDict.is_registred[locale] }}
             </p>
-
           </div>
-
         </div>
       </div>
     </div>
   </section>
-
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import { mapState } from "vuex";
 
-import { BasicDictionnary } from "~/config/basicDict.js" 
+import { BasicDictionnary } from "~/config/basicDict.js";
 
-import FormRegister from './RegisterForm.vue';
+import FormRegister from "./RegisterForm.vue";
 
 export default {
-
-  name: 'RegisterScreen',
+  name: "RegisterScreen",
 
   components: {
-    FormRegister
+    FormRegister,
   },
 
-  props: [
-  ],
+  props: [],
 
-  data () {
+  data() {
     return {
-      basicDict : BasicDictionnary,
-    }
+      basicDict: BasicDictionnary,
+    };
   },
 
   computed: {
-
     ...mapState({
-      log : state => state.log, 
-      locale : state => state.locale,
-      user: state => state.user.user,
-    })
-    
+      log: (state) => state.log,
+      locale: (state) => state.locale,
+      user: (state) => state.user.user,
+    }),
   },
 
-  mounted(){
+  mounted() {
     // hack to scroll top because vue-router scrollBehavior thing doesn't seem to work on Firefox on Linux at least
     const int = setInterval(() => {
-      if(window.pageYOffset < 50){
-        clearInterval(int)
-      }
-      else{
-        window.scrollTo(0, 0)
+      if (window.pageYOffset < 50) {
+        clearInterval(int);
+      } else {
+        window.scrollTo(0, 0);
       }
     }, 100);
   },
 
   methods: {
-
     getText(textCode) {
-      return this.$store.getters['config/defaultText']({txt:textCode})
+      return this.$store.getters["config/defaultText"]({ txt: textCode });
     },
 
-    goBack(e){
-        e.preventDefault()
-        this.$router.back()
-    }
-  }
-
-}
+    goBack(e) {
+      e.preventDefault();
+      this.$router.back();
+    },
+  },
+};
 </script>
