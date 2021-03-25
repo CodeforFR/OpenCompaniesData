@@ -70,8 +70,8 @@ main{
 }
 
 // button, .button{
-// 	// font-size: rem(14px);
-// 	// height: rem(45px)
+//     // font-size: rem(14px);
+//     // height: rem(45px)
 // }
 
 .is-vertical-centered {
@@ -92,9 +92,9 @@ p a.white-link {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  
+
   border-bottom-style: none !important;
-  
+
   // padding-top: $apiviz-spacing_4;
   margin-bottom: $apiviz-spacing_3;
 
@@ -108,18 +108,18 @@ p a.white-link {
     &:not(:last-child){
       border-right: 1px solid $apiviz-grey-light;
     }
-    
+
     a{
       color: inherit;
     }
-  }	
+  }
 }
 
 // #navbar-main .navbar-item.selected a,
 // .cis-tabs li.selected a{
-// 	font-weight: bold;
-// 	// padding-bottom: 0.3em;
-// 	border-bottom: 1px solid $apiviz-primary;
+//     font-weight: bold;
+//     // padding-bottom: 0.3em;
+//     border-bottom: 1px solid $apiviz-primary;
 // }
 
 // Animation: bar unter the text, filling itself when hovered
@@ -196,8 +196,8 @@ div.select {
   bottom: -4px;
   right: 0px;
   z-index : 30;
-  
-  border: 1px solid ; 
+
+  border: 1px solid ;
   border-color : #d9d9d9 ;
 
 }

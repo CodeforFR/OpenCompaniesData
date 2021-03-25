@@ -1,4 +1,4 @@
-### cf : https://guillim.github.io/docker/2018/11/18/docker-hands-on-intro.html 
+### cf : https://guillim.github.io/docker/2018/11/18/docker-hands-on-intro.html
 ### cf : https://jonathanmh.com/deploying-a-nuxt-js-app-with-docker/
 ### cf : https://dev.to/vuevixens/dockerise-your-nuxt-ssr-app-like-a-boss-a-true-vue-vixens-story-4mm6
 ### cf : https://github.com/sass/node-sass/issues/2165
@@ -30,12 +30,12 @@ network-stop:
 ### frontend
 ### ============ ###
 
-nuxt: 
-	${DC} -f ${DC}-nuxt.yml up --build 
+nuxt:
+	${DC} -f ${DC}-nuxt.yml up --build
 nuxt-stop:
 	${DC} -f ${DC}-nuxt.yml down
 
-nuxt-prod: 
+nuxt-prod:
 	${DC} -f ${DC}-nuxt-prod.yml up --build -d
 nuxt-prod-stop:
 	${DC} -f ${DC}-nuxt-prod.yml down

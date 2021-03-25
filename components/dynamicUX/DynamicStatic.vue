@@ -1,6 +1,4 @@
 <template>
-
-
   <!-- DEBUGGING -->
   <!-- <div>
       - localRouteConfig : <br><code>{{ localRouteConfig }}</code><br>
@@ -8,29 +6,26 @@
   </div>-->
 
   <!-- MAIN PART -->
-  <div 
-    :class="`${ skipNavbar ? 'skip-navbar' : ''}`"
+  <div
+    :class="`${skipNavbar ? 'skip-navbar' : ''}`"
     :style="`margin-right:${breakpoint.marginContainer}; margin-left:${breakpoint.marginContainer}`"
-    >
-
+  >
     <!-- <script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/js/bulma-carousel.min.js"></script> -->
 
     <div ref="raw" v-html="rawHtml"></div>
 
-		<!-- <v-runtime-template :template="template"></v-runtime-template> -->
-
+    <!-- <v-runtime-template :template="template"></v-runtime-template> -->
   </div>
-
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 
 // import VRuntimeTemplate from "v-runtime-template" ;
 // import AppMessage from "./AppMessage" ;
 
-import { loadScript, deleteScript, chooseTemplate } from '~/plugins/utils'
-import { mapState, mapGetters } from 'vuex'
+import { loadScript, deleteScript, chooseTemplate } from "~/plugins/utils";
+import { mapState, mapGetters } from "vuex";
 
 // import { bulmaSteps } from '@/node_modules/bulma-extensions/dist/js/bulma-extensions.min.js'
 // import bulmaCarousel from '@/node_modules/bulma-carousel/dist/js/bulma-carousel.min.js'
@@ -38,12 +33,10 @@ import { mapState, mapGetters } from 'vuex'
 
 let scrollListener;
 
-
 export default {
+  name: "DynamicStatic",
 
-  name: 'DynamicStatic',
-
-  components : {
+  components: {
     // VRuntimeTemplate,
     // AppMessage,
   },
@@ -52,199 +45,194 @@ export default {
     // 'routeConfig',
   ],
 
-  beforeMount : function(){
+  beforeMount: function () {
     // this.log && console.log("\nC-DynamicStatic / beforeMount ... ")
   },
 
-  mounted(){
-    this.log && console.log('\nC-DynamicStatic / mounted...')
+  mounted() {
+    this.log && console.log("\nC-DynamicStatic / mounted...");
     // this.log && console.log("C-DynamicStatic / mounted / bulmaSteps : ", bulmaSteps)
     // this.log && console.log("C-DynamicStatic / mounted / bulmaCarousel : ", bulmaCarousel)
-    this.getRawHtml()
-    
+    this.getRawHtml();
 
     scrollListener = () => {
-      const getSearchConfigScrollBeforeBottomTrigger = this.$store.getters['search/getSearchConfigScrollBeforeBottomTrigger']
-      const getSearchConfigMoreProjectOnScrollCount = this.$store.getters['search/getSearchConfigMoreProjectOnScrollCount']
+      const getSearchConfigScrollBeforeBottomTrigger = this.$store.getters[
+        "search/getSearchConfigScrollBeforeBottomTrigger"
+      ];
+      const getSearchConfigMoreProjectOnScrollCount = this.$store.getters[
+        "search/getSearchConfigMoreProjectOnScrollCount"
+      ];
 
-      if (getSearchConfigMoreProjectOnScrollCount && getSearchConfigScrollBeforeBottomTrigger &&
-        window.innerHeight + window.scrollY >= (document.body.offsetHeight - getSearchConfigScrollBeforeBottomTrigger)
+      if (
+        getSearchConfigMoreProjectOnScrollCount &&
+        getSearchConfigScrollBeforeBottomTrigger &&
+        window.innerHeight + window.scrollY >= document.body.offsetHeight - getSearchConfigScrollBeforeBottomTrigger
       ) {
-        if(this.$store.state.search.search.answer.result && this.showCount < this.$store.state.search.search.answer.result.projects.length){
-          this.showCount = this.showCount + getSearchConfigMoreProjectOnScrollCount
+        if (
+          this.$store.state.search.search.answer.result &&
+          this.showCount < this.$store.state.search.search.answer.result.projects.length
+        ) {
+          this.showCount = this.showCount + getSearchConfigMoreProjectOnScrollCount;
         }
       }
-    }
-    window.addEventListener('scroll', scrollListener, {passive: true})
+    };
+    window.addEventListener("scroll", scrollListener, { passive: true });
 
-    
     if (this.localRouteConfig && this.localRouteConfig.has_ext_script) {
-      for ( let ext_script of this.localRouteConfig.ext_script_urls ){
-        if ( ext_script.at_mount ) {
-          loadScript(ext_script.url, ext_script.type, ext_script.script_id, undefined)
+      for (let ext_script of this.localRouteConfig.ext_script_urls) {
+        if (ext_script.at_mount) {
+          loadScript(ext_script.url, ext_script.type, ext_script.script_id, undefined);
         }
       }
     }
   },
 
-  beforeUpdate : function(){
-    this.log && console.log("\nC-DynamicStatic / beforeUpdate ... ")
+  beforeUpdate: function () {
+    this.log && console.log("\nC-DynamicStatic / beforeUpdate ... ");
     if (this.localRouteConfig && this.localRouteConfig.has_ext_script) {
-      for ( let ext_script of this.localRouteConfig.ext_script_urls  ){
-        deleteScript(ext_script.script_id)
+      for (let ext_script of this.localRouteConfig.ext_script_urls) {
+        deleteScript(ext_script.script_id);
       }
       if (this.localRouteConfig && this.localRouteConfig.has_ext_script) {
-        for ( let ext_script of this.localRouteConfig.ext_script_urls ){
-          if ( ext_script.at_mount ) {
-            loadScript(ext_script.url, ext_script.type, ext_script.script_id, undefined)
+        for (let ext_script of this.localRouteConfig.ext_script_urls) {
+          if (ext_script.at_mount) {
+            loadScript(ext_script.url, ext_script.type, ext_script.script_id, undefined);
           }
         }
       }
     }
   },
 
-  beforeDestroy : function(){
-    this.log && console.log("\nC-DynamicStatic / beforeDestroy ... ")
+  beforeDestroy: function () {
+    this.log && console.log("\nC-DynamicStatic / beforeDestroy ... ");
 
-    window.removeEventListener('scroll', scrollListener)
+    window.removeEventListener("scroll", scrollListener);
     scrollListener = undefined;
 
     try {
-      for ( let ext_script of this.localRouteConfig.ext_script_urls  ){
-        deleteScript(ext_script.script_id)
+      for (let ext_script of this.localRouteConfig.ext_script_urls) {
+        deleteScript(ext_script.script_id);
       }
-    } catch(error) {
-      this.log && console.log("\nC-DynamicStatic / beforeDestroy / error :", error)
+    } catch (error) {
+      this.log && console.log("\nC-DynamicStatic / beforeDestroy / error :", error);
     }
   },
 
   data: () => {
-    return   {
-      rawHtml : '',
+    return {
+      rawHtml: "",
 
-      errorHtml : '<br><br>there is an <strong> Error </strong><br><br>',
+      errorHtml: "<br><br>there is an <strong> Error </strong><br><br>",
 
-      bulmaExtensions: {}
-    }
+      bulmaExtensions: {},
+    };
   },
 
   computed: {
-
     ...mapState({
-      log : state => state.log, 
-      locale : state => state.locale,
-      breakpoint : state => state.breakpoint,
-      user : state => state.user.user,
+      log: (state) => state.log,
+      locale: (state) => state.locale,
+      breakpoint: (state) => state.breakpoint,
+      user: (state) => state.user.user,
     }),
 
     ...mapGetters({
-      localRouteConfig : 'config/getLocalRouteConfig',
-      has_navbar : 'config/hasNavbar',
-      has_tabs : 'config/hasTabs',
+      localRouteConfig: "config/getLocalRouteConfig",
+      has_navbar: "config/hasNavbar",
+      has_tabs: "config/hasTabs",
     }),
 
-    skipNavbar(){
-      if (this.has_tabs){
-        return false
+    skipNavbar() {
+      if (this.has_tabs) {
+        return false;
       } else {
-        return this.has_navbar
+        return this.has_navbar;
       }
     },
-
   },
 
-  watch : {
-
-    localRouteConfig(newVal, oldVal){
+  watch: {
+    localRouteConfig(newVal, oldVal) {
       // this.log && console.log("\n - - DynamicStatic / watch / localRouteConfig ... ")
-      this.rawHtml = ''
-      this.getRawHtml()
+      this.rawHtml = "";
+      this.getRawHtml();
     },
 
-    locale(newVal, oldVal){
+    locale(newVal, oldVal) {
       // this.log && console.log("\n - - DynamicStatic / watch / locale ... ")
-      this.rawHtml = ''
-      this.getRawHtml()
+      this.rawHtml = "";
+      this.getRawHtml();
     },
 
-    rawHtml(newRawHtml, oldRawHtml){
-      if (oldRawHtml == '' && newRawHtml != ''){
-        this.log && console.log("C-DynamicStatic / watch : rawHtml / rawHtml is not blank anymore")
-        this.loadExtScript()
-      }
-      else {
+    rawHtml(newRawHtml, oldRawHtml) {
+      if (oldRawHtml == "" && newRawHtml != "") {
+        this.log && console.log("C-DynamicStatic / watch : rawHtml / rawHtml is not blank anymore");
+        this.loadExtScript();
+      } else {
         // this.log && console.log(oldRawHtml, newRawHtml)
       }
-    }
+    },
   },
 
   methods: {
-
-    getRawHtml(){
-
+    getRawHtml() {
       // hack to scroll top because vue-router scrollBehavior thing doesn't seem to work on Firefox on Linux at least
       const int = setInterval(() => {
-        if(window.pageYOffset < 50){
-          clearInterval(int)
-        }
-        else{
-          window.scrollTo(0, 0)
+        if (window.pageYOffset < 50) {
+          clearInterval(int);
+        } else {
+          window.scrollTo(0, 0);
         }
       }, 100);
 
-
-      this.rawHtml = ''
+      this.rawHtml = "";
 
       // here we go fetch the raw HTML content of a webpage
       // let template_url = (this.localRouteConfig && this.localRouteConfig.template_url) ? this.localRouteConfig.template_url : 'https://co-demos.com/error'
-      let template_url = (this.localRouteConfig && this.localRouteConfig.template_urls) ? chooseTemplate(this.localRouteConfig.template_urls, this.locale) : "https://raw.githubusercontent.com/co-demos/structure/master/pages-html/tools-fr.html"
-      this.log && console.log('C-DynamicStatic / getRawHtml / template_url : ', template_url)
+      let template_url =
+        this.localRouteConfig && this.localRouteConfig.template_urls
+          ? chooseTemplate(this.localRouteConfig.template_urls, this.locale)
+          : "https://raw.githubusercontent.com/co-demos/structure/master/pages-html/tools-fr.html";
+      this.log && console.log("C-DynamicStatic / getRawHtml / template_url : ", template_url);
 
       // FETCH DISTANT HTML FILE
-      if (template_url){
-
+      if (template_url) {
         let head = {
           headers: {
-          //  'Access-Control-Allow-Origin': '*', // Uncommented, to try
-            'accept' : 'text/html',
-          }
-        }
-        axios.get(template_url, head)
-        .then( (response) => {
-          // this.log && console.log(response);
-          this.rawHtml = (response && response.data) ? response.data : this.errorHtml},
-        )
-        .catch( (err) => {this.rawHtml = this.errorHtml} )
-
+            //  'Access-Control-Allow-Origin': '*', // Uncommented, to try
+            accept: "text/html",
+          },
+        };
+        axios
+          .get(template_url, head)
+          .then((response) => {
+            // this.log && console.log(response);
+            this.rawHtml = response && response.data ? response.data : this.errorHtml;
+          })
+          .catch((err) => {
+            this.rawHtml = this.errorHtml;
+          });
       }
-
-
     },
 
-    loadExtScript(){
-
+    loadExtScript() {
       // IMPORT EXT SCRIPT
       // Cf:
       // https://stackoverflow.com/questions/17341122/link-and-execute-external-javascript-file-hosted-on-github
       // https://stackoverflow.com/questions/45047126/how-to-add-external-js-scripts-to-vuejs-components
       if (this.localRouteConfig && this.localRouteConfig.has_ext_script) {
+        this.log && console.log("C-DynamicStatic / loadExtScript / load external script");
 
-        this.log && console.log("C-DynamicStatic / loadExtScript / load external script")
-        
-        let ext_script_urls = this.localRouteConfig.ext_script_urls
-        this.log && console.log("C-DynamicStatic / loadExtScript / ext_script_urls : ", ext_script_urls)
+        let ext_script_urls = this.localRouteConfig.ext_script_urls;
+        this.log && console.log("C-DynamicStatic / loadExtScript / ext_script_urls : ", ext_script_urls);
 
-        for ( let ext_script of ext_script_urls ) {
+        for (let ext_script of ext_script_urls) {
+          this.log && console.log("C-DynamicStatic / loadExtScript / ext_script : ", ext_script);
 
-          this.log && console.log("C-DynamicStatic / loadExtScript / ext_script : ", ext_script)
-
-          if ( !ext_script.at_mount ){
-            loadScript(ext_script.url, ext_script.type, ext_script.script_id, undefined)
+          if (!ext_script.at_mount) {
+            loadScript(ext_script.url, ext_script.type, ext_script.script_id, undefined);
           }
-
         }
-
-
       }
 
       // // ACTIVATE CAROUSELS
@@ -252,7 +240,7 @@ export default {
 
       //   this.log && console.log("C-DynamicStatic / loadExtScript / load carousel")
       //   // loadScript("https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/js/bulma-carousel.min.js", activateCarousel);
-        
+
       //   // this.log && console.log("C-DynamicStatic / loadExtScript / this.rawHtml : ", this.rawHtml);
 
       //   let carouselSettings = this.localRouteConfig.carousel_settings
@@ -281,16 +269,14 @@ export default {
       //   // let rawInnerHtml = this.$refs.raw.innerHTML
       //   // this.log && console.log("C-DynamicStatic / loadExtScript / rawInnerHtml : ", rawInnerHtml);
 
-
       //   // for (var i = 0; i < this.$refs.raw.childNodes.length; i++) {
       //   //   console.log( "--- this.$refs.raw.childNodes["+i+"] : ", this.$refs.raw.childNodes[i] )
       //   // }
 
-
       //   // let selector = this.$refs.raw.home
       //   // this.log && console.log("C-DynamicStatic / loadExtScript / selector : ", selector);
 
-      //   // activateCarousel() 
+      //   // activateCarousel()
       //   // activateCarousel(slidesNumber=2, isInfinite=true, hasPagination=true)
 
       //   // let carousels = bulmaCarousel.attach('.carousel', options)
@@ -302,12 +288,10 @@ export default {
       // }
     },
 
-    goBack(e){
-      e.preventDefault()
-      this.$router.back()
-    }
-
-  }
-
-}
+    goBack(e) {
+      e.preventDefault();
+      this.$router.back();
+    },
+  },
+};
 </script>

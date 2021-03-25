@@ -1,62 +1,51 @@
 <template>
-  <DynamicSearchScreenSqueleton
-    :filtersConfig="filtersConfig"
-    mainClass="table"
-    >
-    <SearchResultsTable
-      :routeConfig="routeConfig"
-    />
-      <!-- :projectContentsFields="routeConfig.contents_fields" -->
+  <DynamicSearchScreenSqueleton :filtersConfig="filtersConfig" mainClass="table">
+    <SearchResultsTable :routeConfig="routeConfig" />
+    <!-- :projectContentsFields="routeConfig.contents_fields" -->
   </DynamicSearchScreenSqueleton>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState } from "vuex";
 
-import DynamicSearchScreenSqueleton from './DynamicSearchScreenSqueleton.vue'
-import SearchResultsTable from './SearchResultsTable.vue';
+import DynamicSearchScreenSqueleton from "./DynamicSearchScreenSqueleton.vue";
+import SearchResultsTable from "./SearchResultsTable.vue";
 
 export default {
+  name: "DynamicTable",
 
-  name: 'DynamicTable',
-
-  props:[
-    'routeConfig',
-    'endPointConfig',
-    'filtersConfig',
+  props: [
+    "routeConfig",
+    "endPointConfig",
+    "filtersConfig",
     // 'breakpoint'
   ],
 
-  beforeMount : function(){
+  beforeMount: function () {
     // this.log && console.log('\nC-DynamicList / beforeMount...')
   },
 
   data: () => {
-    return   {
-    }
+    return {};
   },
 
   components: {
     DynamicSearchScreenSqueleton,
-    SearchResultsTable
+    SearchResultsTable,
   },
 
   computed: {
-
     ...mapState({
-      log : state => state.log,
-      breakpoint : state => state.breakpoint,
-      user: state => state.user.user
+      log: (state) => state.log,
+      breakpoint: (state) => state.breakpoint,
+      user: (state) => state.user.user,
     }),
-
   },
-}
+};
 </script>
 
 <style>
-
-  .list .filter-feedback{
-    padding-bottom: 0;
-  }
-
+.list .filter-feedback {
+  padding-bottom: 0;
+}
 </style>

@@ -17,7 +17,7 @@ RUN echo "-->>> installing packages" && \
 # copy rest of app folder
 COPY . /app
 
-# RUN npm run build 
+# RUN npm run build
 
 # expose port on container
 EXPOSE 3001

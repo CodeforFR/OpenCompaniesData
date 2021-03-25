@@ -1,0 +1,101 @@
+exclude: ^(.*\/node_modules|.*package.json|.*package-lock.json|.*\/fixtures\/.*.json)
+repos:
+  - hooks:
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: forbid-new-submodules
+    repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+  - hooks:
+      - id: check-byte-order-marker
+      - id: check-case-conflict
+      - id: check-executables-have-shebangs
+      - id: check-symlinks
+      - id: check-vcs-permalinks
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+    repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+  - hooks:
+      - id: forbid-crlf
+      - id: remove-crlf
+      - id: forbid-tabs
+      - id: remove-tabs
+    repo: https://github.com/Lucas-C/pre-commit-hooks
+    rev: v1.1.9
+  - hooks:
+      - id: check-json
+      - args:
+          - --autofix
+        id: pretty-format-json
+    repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+  - hooks:
+      - id: beautysh
+    repo: https://github.com/bemeurer/beautysh.git
+    rev: 6.0.1
+  - hooks:
+      - id: script-must-have-extension
+    repo: https://github.com/jumanjihouse/pre-commit-hooks
+    rev: 2.1.4
+  - hooks:
+      - args:
+          - "-d {rules: {line-length: {max: 999}}}"
+        id: yamllint
+    repo: https://github.com/adrienverge/yamllint.git
+    rev: v1.24.2
+  - hooks:
+      - id: check-yaml
+      - id: sort-simple-yaml
+    repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+  - hooks:
+      - id: gitlab-ci-linter
+    repo: https://gitlab.com/devopshq/gitlab-ci-linter
+    rev: v1.0.1
+  - hooks:
+      - additional_dependencies:
+          - eslint@latest
+          - vue-eslint-parser@latest
+          - eslint-plugin-vue@latest
+          - eslint-plugin-jquery@latest
+          - eslint-plugin-eslint-plugin@latest
+          - prettier@latest
+          - eslint-config-prettier@latest
+          - eslint-plugin-prettier@latest
+          - babel-eslint
+        args:
+          - -c=.eslintrc.js
+          - --fix
+        id: eslint
+        name: vue-eslint
+        types:
+          - vue
+    repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v7.8.1
+  - hooks:
+      - additional_dependencies:
+          - eslint@latest
+          - vue-eslint-parser@latest
+          - eslint-plugin-vue@latest
+          - eslint-plugin-jquery@latest
+          - eslint-plugin-eslint-plugin@latest
+          - prettier@latest
+          - eslint-config-prettier@latest
+          - eslint-plugin-prettier@latest
+          - babel-eslint
+        args:
+          - -c=.eslintrc.js
+          - --fix
+        files: ^
+        id: eslint
+        name: js-eslint
+    repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v7.8.1
+  - hooks:
+      - id: commitizen
+        stages:
+          - manual
+    repo: https://github.com/commitizen-tools/commitizen
+    rev: v2.3.1

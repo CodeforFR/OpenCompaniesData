@@ -1,5 +1,5 @@
 ---
-layout : single 
+layout : single
 title : INSTALLATION WALKTHROUGH
 # permalink : /docs/installation
 categories:
@@ -57,4 +57,3 @@ $ make down # stop app with Docker
 ```
 
 ... then check in your browser : [`localhost:3333`](localhost:3333)
-

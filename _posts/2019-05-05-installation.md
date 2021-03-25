@@ -40,7 +40,7 @@ NUXT_BACKEND_MODE=default
 
 --------
 
-## Build and run 
+## Build and run
 
 You have two different options to run (locally) Apiviz on your computer/server : with **Node** or with **Docker**, depending where your heart leans...
 
@@ -102,7 +102,7 @@ npm run generate
 ```
 
 
------ 
+-----
 
 ## A new website from scratch based on a model
 
@@ -115,4 +115,3 @@ If you generated a new UUID (not based on the default UUID from the original rep
 Now you just have to follow the instructions to generate a brand new data visualisation website, and in a couple of steps your website will be set up ...
 
 {% include figure image_path="/documentation/screenshots/new_instance-02.png" alt="admin view" %}
-

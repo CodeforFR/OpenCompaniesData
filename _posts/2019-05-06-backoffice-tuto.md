@@ -23,17 +23,17 @@ So we tried to simplify this task by organizing the things to customize in speci
 
 {% include figure image_path="/documentation/screenshots/backoffice-sonum-06.png" alt="backoffice view" %}
 
-The back office is organized as follow : 
+The back office is organized as follow :
 
-- A - a side menu to access all the configuration's collections ; 
-- B - a tab menu for each collection, to access every sub-family of configuration ; 
-- C - a configuration documents list for every tab ; 
+- A - a side menu to access all the configuration's collections ;
+- B - a tab menu for each collection, to access every sub-family of configuration ;
+- C - a configuration documents list for every tab ;
 
-Then for every document you can : 
+Then for every document you can :
 
-- D - open an editor to modify the entries ; 
-- E - duplicate the document (if the "`add document`" button is present at the end of the documents list) ; 
-- F - delete the document (if the "`delete`" button appears at the end of the document's editor) ; 
+- D - open an editor to modify the entries ;
+- E - duplicate the document (if the "`add document`" button is present at the end of the documents list) ;
+- F - delete the document (if the "`delete`" button appears at the end of the document's editor) ;
 
 -----
 

@@ -3,19 +3,17 @@ version: '3'
 services:
 
   apiviz-nuxt:
-    build: 
+    build:
       context: ${APP_PATH}
       dockerfile: Dockerfile.nuxt
     container_name: ${APP}-nuxt
     restart: always
-    environment : 
+    environment :
       - HOST=0.0.0.0
     ports:
       - "3001:3001"
-    command: 
+    command:
       npm run dev
     volumes:
       - .:/app
       - /app/node_modules/
-      
-

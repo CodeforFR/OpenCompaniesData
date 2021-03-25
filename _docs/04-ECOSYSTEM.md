@@ -1,5 +1,5 @@
 ---
-layout : single 
+layout : single
 title : THE APIVIZ ECOSYSTEM
 # permalink : /documentation/ecosystem
 categories:
@@ -12,11 +12,11 @@ toc_label: " contents"
 ---
 
 -----
-ApiViz is designed to **agnosticaly display data** and provide an engine to deploy a **datavisualisation website** without (too much) pain, not regarding to the service(s) serving and storing the data. 
+ApiViz is designed to **agnosticaly display data** and provide an engine to deploy a **datavisualisation website** without (too much) pain, not regarding to the service(s) serving and storing the data.
 
 Nevertheless to do so an instance of ApiViz must be connected to several external services : one for authentication, one for serving the data, one for storing the static contents (html pages, images...).
 
-The goal of ApiViz is to **work with any external service** fulfilling those roles, but we developed an **eco-system of open source applications** allowing a complete and free way to deploy such a datavisualisation service. 
+The goal of ApiViz is to **work with any external service** fulfilling those roles, but we developed an **eco-system of open source applications** allowing a complete and free way to deploy such a datavisualisation service.
 
 ## OUR OPEN SOURCE WEBAPPS
 
@@ -38,10 +38,10 @@ In the following illustration you can have a general idea of how those several s
 ![SCHEME](../documentation/configurations/APIVIZ-CONFIGURATIONS-export-details-light.jpg)
 
 
-You can also check those several projects and repository to find some layout for your specific new datavisualisation website : 
+You can also check those several projects and repository to find some layout for your specific new datavisualisation website :
 - Sonum repo ;
 - CIS repo ;
-- ... and more to come... 
+- ... and more to come...
 
 ------
 
@@ -58,12 +58,12 @@ You can also check those several projects and repository to find some layout for
 
 ### [TokTok](https://github.com/co-demos/toktok)
 
-centralizes requests concerning user's authentication : 
+centralizes requests concerning user's authentication :
 
   - login : given an email and a password responds with an `access_token` and a `refresh_token`
-  - register an new user : 
-  - modify an user :  
-  - retrieves user's infos : 
+  - register an new user :
+  - modify an user :
+  - retrieves user's infos :
   - confirm an `access_token` is authorized, valid, or not.
 
 
@@ -71,10 +71,10 @@ centralizes requests concerning user's authentication :
 
 ### [Solidata](https://github.com/entrepreneur-interet-general/solidata_frontend)
 
-centralizes data management : 
+centralizes data management :
 
   - stores data as open data projects.
-  - "API-fy" your tabular data. 
+  - "API-fy" your tabular data.
   - allows distant modifications on data thanks to its backend API.
   - allows you to gather and normalize several datasets into a single open data project / dataset output.
 
@@ -82,7 +82,7 @@ centralizes data management :
 
 ### client's Github/Gitlab repo
 
-centralizes html pages, images and external scripts you'll need for your original wabapp : 
+centralizes html pages, images and external scripts you'll need for your original wabapp :
 
   - by storing your static contents on a Github/Gitlab repo, modifying a content for your online server doesn't need to change your app source code anymore, you just need to modify your html/images/scripts on Github/Gitlab, and a few minute after your content is changed directly online.
   - that way you can separate in your team those in charge to modify contents, and those in charge of code maintenance.
@@ -91,9 +91,9 @@ centralizes html pages, images and external scripts you'll need for your origina
 
 ### [Apiviz](https://github.com/co-demos/ApiViz)
 
-gathers data and app configuration to display an original website : 
+gathers data and app configuration to display an original website :
 
-  - navbar configuration : define the logo, links, and menus in your apiviz instance's navabr. 
+  - navbar configuration : define the logo, links, and menus in your apiviz instance's navabr.
   - footer configuration : define the links present in the apiviz instance's footer.
   - styles configuration : define the CSS styles for your apiviz instance.
   - global configuration : define some metadata for your apiviz instance.

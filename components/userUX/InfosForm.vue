@@ -1,6 +1,5 @@
 <template>
   <div>
-    
     <!-- INFOS -->
     <div class="field is-horizontal">
       <div class="field-label is-normal">
@@ -11,14 +10,14 @@
       <div class="field-body">
         <div class="field">
           <p class="control is-expanded has-icons-left">
-            <input 
-              class="input" 
-              v-validate="'required'" 
-              name="userName"               
-              type="text" 
-              :placeholder="basicDict.name[locale]" 
+            <input
+              class="input"
+              v-validate="'required'"
+              name="userName"
+              type="text"
+              :placeholder="basicDict.name[locale]"
               v-model="userEdit.infos.name"
-              >
+            />
             <span class="icon is-small is-left">
               <i class="fas fa-user"></i>
             </span>
@@ -26,14 +25,14 @@
         </div>
         <div class="field">
           <p class="control is-expanded has-icons-left">
-            <input 
-              class="input" 
-              v-validate="'required'" 
-              name="userSurname" 
-              type="text" 
-              :placeholder="basicDict.surname[locale]" 
+            <input
+              class="input"
+              v-validate="'required'"
+              name="userSurname"
+              type="text"
+              :placeholder="basicDict.surname[locale]"
               v-model="userEdit.infos.surname"
-              >
+            />
             <span class="icon is-small is-left">
               <i class="fas fa-user"></i>
             </span>
@@ -52,13 +51,13 @@
       <div class="field-body">
         <div class="field">
           <p class="control is-expanded has-icons-left has-icons-right">
-            <input 
-              class="input" 
-              name="userEmail" 
-              type="email" 
+            <input
+              class="input"
+              name="userEmail"
+              type="email"
               :placeholder="basicDict.email[locale]"
               v-model="userEdit.infos.email"
-              >
+            />
             <span class="icon is-small is-left">
               <i class="fas fa-envelope"></i>
             </span>
@@ -157,18 +156,13 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <textarea 
-              class="textarea" 
-              :placeholder="basicDict.u_about_more[locale]"
-              >
-            </textarea>
+            <textarea class="textarea" :placeholder="basicDict.u_about_more[locale]"> </textarea>
           </div>
         </div>
       </div>
     </div>
 
-
-    <br>
+    <br />
 
     <!-- UPDATE INFOS // TO DO  -->
     <div class="field is-horizontal">
@@ -190,65 +184,52 @@
         </div>
       </div>
     </div>
-
-
-
   </div>
 </template>
 
-
 <script>
-  import { mapState, mapGetters } from 'vuex'
-  import axios from 'axios'
+import { mapState, mapGetters } from "vuex";
+import axios from "axios";
 
-  import { BasicDictionnary } from "~/config/basicDict.js" 
+import { BasicDictionnary } from "~/config/basicDict.js";
 
+export default {
+  name: "InfosForm",
 
-  export default {
+  data: function () {
+    return {
+      userEdit: undefined,
+      customformError: "",
+      basicDict: BasicDictionnary,
+    };
+  },
 
-    name: 'InfosForm',
+  beforeMount: function () {
+    // this.log && console.log('\nC-InfosForrm.vue / beforeMount...')
+    this.userEdit = this.user;
+  },
 
-    data: function () {
-      return {
-        userEdit: undefined,
-        customformError: '',
-        basicDict : BasicDictionnary,
-      }
+  computed: {
+    ...mapState({
+      log: (state) => state.log,
+      locale: (state) => state.locale,
+      user: (state) => state.user.user,
+      jwt: (state) => state.user.jwt,
+    }),
+
+    isUserAdmin() {
+      return this.$store.getters["user/getCheckUserRole"]("admin");
     },
 
-    beforeMount : function(){
-      // this.log && console.log('\nC-InfosForrm.vue / beforeMount...')
-      this.userEdit = this.user
+    isUserStaff() {
+      return this.$store.getters["user/getCheckUserRole"]("staff");
     },
+  },
 
-    computed: {
-
-      ...mapState({
-        log : state => state.log, 
-        locale : state => state.locale,
-        user: state => state.user.user,
-        jwt: state => state.user.jwt,
-      }),
-
-      isUserAdmin () {
-        return this.$store.getters['user/getCheckUserRole']('admin')
-      },
-      
-      isUserStaff () {
-        return this.$store.getters['user/getCheckUserRole']('staff')
-      },
-
-    },
-
-
-    methods: {
-
-      // getText(textCode) {
-      //   return this.$store.getters['config/defaultText']({txt:textCode})
-      // },
-    }
-
-  }
-
-
+  methods: {
+    // getText(textCode) {
+    //   return this.$store.getters['config/defaultText']({txt:textCode})
+    // },
+  },
+};
 </script>

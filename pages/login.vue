@@ -1,67 +1,47 @@
 <template>
   <div>
-
     <!-- NAVBAR -->
-    <Navbar 
-      v-if="has_navbar"
-    ></Navbar>
+    <Navbar v-if="has_navbar"></Navbar>
 
     <!-- LOGIN/LOGOUT/REGISTER ROUTES -->
-    <LoginScreen 
-    ></LoginScreen>
-
+    <LoginScreen></LoginScreen>
   </div>
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters } from "vuex";
 
-import LoginScreen from '~/components/userUX/LoginScreen.vue';
-import Navbar from '~/components/dynamicUX/Navbar.vue';
+import LoginScreen from "~/components/userUX/LoginScreen.vue";
+import Navbar from "~/components/dynamicUX/Navbar.vue";
 
 export default {
-  
-  name: 'login',
+  name: "login",
 
   components: {
-
     LoginScreen,
     Navbar,
-
   },
 
-  middleware : [
-    'getRouteConfig',
-  ],
+  middleware: ["getRouteConfig"],
 
-  beforeMount : function(){
-    this.log && console.log('\nP-login.vue / beforeMount...')
+  beforeMount: function () {
+    this.log && console.log("\nP-login.vue / beforeMount...");
   },
 
-  data () {
-    return {
-    }
+  data() {
+    return {};
   },
 
   computed: {
-
-    ...mapState({
-
-    }),
+    ...mapState({}),
 
     ...mapGetters({
-      has_navbar : 'config/hasNavbar',
+      has_navbar: "config/hasNavbar",
     }),
-
   },
 
-  methods: {
-
-  }
-
-}
+  methods: {},
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

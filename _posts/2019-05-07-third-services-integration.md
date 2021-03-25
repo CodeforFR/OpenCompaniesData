@@ -24,7 +24,7 @@ detailInt:
 
 ### INTEGRATION WITH OTHER SERVICES
 
-Apiviz aims to allow integration with third party services, either open sourced or closed. 
+Apiviz aims to allow integration with third party services, either open sourced or closed.
 
 This illustrations shows various possibilities of interoperability between services.
 

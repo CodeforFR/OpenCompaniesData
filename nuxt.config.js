@@ -1,33 +1,30 @@
-import pkg from './package'
+import pkg from "./package";
 
-require('dotenv').config()
+require("dotenv").config();
 
-console.log('>>> nuxt.config.js / process.env.NUXT_APP_CONFIG_NAME : ', process.env.NUXT_APP_CONFIG_NAME)
+console.log(">>> nuxt.config.js / process.env.NUXT_APP_CONFIG_NAME : ", process.env.NUXT_APP_CONFIG_NAME);
 
+const envBackendMode = process.env.NUXT_BACKEND_MODE || "default";
+console.log(">>> nuxt.config.js / process.env.NUXT_BACKEND_MODE : ", envBackendMode);
 
-const envBackendMode = process.env.NUXT_BACKEND_MODE || 'default'
-console.log('>>> nuxt.config.js / process.env.NUXT_BACKEND_MODE : ', envBackendMode)
-
-const envAuthMode = process.env.NUXT_AUTH_MODE || 'default'
-console.log('>>> nuxt.config.js / process.env.NUXT_AUTH_MODE : ', envAuthMode)
+const envAuthMode = process.env.NUXT_AUTH_MODE || "default";
+console.log(">>> nuxt.config.js / process.env.NUXT_AUTH_MODE : ", envAuthMode);
 
 // const htmlFilesMode = process.env.NUXT_HTML_FILES || 'distant'
 // console.log('>>> nuxt.config.js / process.env.NUXT_HTML_FILES : ', htmlFilesMode)
 
-const logAllowed = ['dev', 'preprod']
-const consoleLogMode = process.env.NUXT_CONSOLELOG || 'prod'
-console.log('>>> nuxt.config.js / process.env.NUXT_CONSOLELOG :', consoleLogMode)
-
+const logAllowed = ["dev", "preprod"];
+const consoleLogMode = process.env.NUXT_CONSOLELOG || "prod";
+console.log(">>> nuxt.config.js / process.env.NUXT_CONSOLELOG :", consoleLogMode);
 
 const routerBase = {
   router: {
-    base: "/"
-  }
-}
+    base: "/",
+  },
+};
 
 export default {
-
-  mode: 'spa',
+  mode: "spa",
 
   ...routerBase,
 
@@ -44,9 +41,9 @@ export default {
   cf : https://samuelcoe.com/blog/nuxt-dotenv/
   */
   env: {
-    BackendMode : envBackendMode,
+    BackendMode: envBackendMode,
     ConsoleLog: logAllowed.includes(consoleLogMode),
-    AuthMode : envAuthMode,
+    AuthMode: envAuthMode,
     // HtmlFilesMode : htmlFilesMode,
   },
 
@@ -55,25 +52,21 @@ export default {
   cf : https://nuxtjs.org/api/configuration-router
   */
   router: {
-    middleware: [
-      'setAppMode',
-      'checkAuth',
-      'collapseNavbar',
-    ],
+    middleware: ["setAppMode", "checkAuth", "collapseNavbar"],
     // scrollBehavior: function (to, from, savedPosition) {
     //   return { x: 0, y: 0 }
     // }
   },
 
   /*
-  ** Headers of the page
-  */
+   ** Headers of the page
+   */
   head: {
-    title: pkg.name + ' v.' + pkg.version,
+    title: pkg.name + " v." + pkg.version,
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { hid: "description", name: "description", content: pkg.description },
     ],
     // link: [
     //   { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -81,21 +74,20 @@ export default {
   },
 
   /*
-  ** Customize the progress-bar color
-  */
-  loading: { color: '#fff' },
-
+   ** Customize the progress-bar color
+   */
+  loading: { color: "#fff" },
 
   /*
-  ** Global CSS
-  */
+   ** Global CSS
+   */
   css: [
     // Load a Node.js module directly (here it's a Sass file)
     // 'bulma',
     // CSS file in the project
     // '@/assets/css/main.css',
     // SCSS file in the project
-    '@/assets/css/main.scss'
+    "@/assets/css/main.scss",
   ],
 
   /*
@@ -103,33 +95,34 @@ export default {
   cf : https://nuxtjs.org/api/configuration-plugins
   */
   plugins: [
+    { src: "~plugins/vee-validate.js", ssr: false },
 
-    {src: '~plugins/vee-validate.js', ssr: false},
-
-    '~/plugins/translate',
+    "~/plugins/translate",
     // '~/plugins/axios',
     // '~/plugins/checkTokens',
     // '~/plugins/utils',
 
-    '~/plugins/json-editor',
+    "~/plugins/json-editor",
 
     // '~/plugins/turf-plugin',
-    { src: '~/plugins/mapbox', mode: 'client' },
-    { src: '~/plugins/apexCharts', mode: 'client' },
+    { src: "~/plugins/mapbox", mode: "client" },
+    { src: "~/plugins/apexCharts", mode: "client" },
 
     // { src: '~plugins/full-calendar', ssr: false }
-    { src: '~plugins/vue-event-calendar', ssr: false }
+    { src: "~plugins/vue-event-calendar", ssr: false },
   ],
 
   /*
-  ** Nuxt.js modules
-  */
+   ** Nuxt.js modules
+   */
   modules: [
-
-    ['nuxt-validate', {
-      // lang: 'es',
-      // regular vee-validate options
-    }],
+    [
+      "nuxt-validate",
+      {
+        // lang: 'es',
+        // regular vee-validate options
+      },
+    ],
 
     // Doc: https://axios.nuxtjs.org/usage
     // '@nuxtjs/axios',
@@ -152,8 +145,8 @@ export default {
   ],
 
   /*
-  ** Axios module configuration (@nuxt/axios)
-  */
+   ** Axios module configuration (@nuxt/axios)
+   */
   // axios: {
   //   // See https://github.com/nuxt-community/axios-module#options
   //   // baseURL: '',
@@ -167,18 +160,17 @@ export default {
   // },
 
   /*
-  ** Build configuration
-  */
+   ** Build configuration
+   */
   build: {
-
     extend(config, { isDev, isClient }) {
       config.resolve.alias["vue"] = "vue/dist/vue.common";
     },
 
-    vendors : [
-      'axios',
+    vendors: [
+      "axios",
       // 'vee-validate',
-      'mapbox-gl',
+      "mapbox-gl",
       // 'turf'
     ],
 
@@ -191,7 +183,7 @@ export default {
     //   }
     // },
     /*
-    ** You can extend webpack config here
-    */
-  }
-}
+     ** You can extend webpack config here
+     */
+  },
+};

@@ -1,98 +1,80 @@
 <template>
+  <div id="searchScreennSkeleton">
+    <SearchWithFilters :filtersConfig="filtersConfig" />
 
-  <div 
-    id="searchScreennSkeleton"
-    >
-
-    <SearchWithFilters
-      :filtersConfig="filtersConfig"
-    />
-    
-    <main 
-      :class="`${mainClass} ${onlyIframe ? 'iframe' : ''}`"
-      >
-      <FiltersFeedback/>
-      <slot/>
+    <main :class="`${mainClass} ${onlyIframe ? 'iframe' : ''}`">
+      <FiltersFeedback />
+      <slot />
     </main>
 
     <!-- DEBUGGING -->
-      <!-- 
+    <!--
         <br><br>
       DynamicSearchSqueleton // endpointConfig : <br><code>{{ this.endpointConfig }}</code>
       <br><br>
-      DynamicSearchSqueleton // getEndpointConfigFilters : <br><code>{{ this.getEndpointConfigFilters }}</code> 
-    --> 
-
+      DynamicSearchSqueleton // getEndpointConfigFilters : <br><code>{{ this.getEndpointConfigFilters }}</code>
+    -->
   </div>
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters } from "vuex";
 
-import SearchWithFilters from './SearchWithFilters.vue'
-import FiltersFeedback from './FiltersFeedback.vue'
+import SearchWithFilters from "./SearchWithFilters.vue";
+import FiltersFeedback from "./FiltersFeedback.vue";
 
 export default {
-  
-  name: 'DynamicSearchScreenSqueleton',
-  
+  name: "DynamicSearchScreenSqueleton",
+
   components: {
-    SearchWithFilters, 
-    FiltersFeedback, 
+    SearchWithFilters,
+    FiltersFeedback,
   },
-  
-  props: [
-    'filtersConfig',
-    'mainClass'
-  ],
 
-  data : () => {
+  props: ["filtersConfig", "mainClass"],
+
+  data: () => {
     return {
-      onlyIframe : false,
-    }
+      onlyIframe: false,
+    };
   },
 
-  beforeMount : function(){
-    this.log && console.log('\nC-DynamicSearchScreenSqueleton / beforeMount...')
+  beforeMount: function () {
+    this.log && console.log("\nC-DynamicSearchScreenSqueleton / beforeMount...");
     if (this.$nuxt.$route.query.iframing) {
-      this.onlyIframe = true
+      this.onlyIframe = true;
     }
   },
 
-  mounted(){
-    this.log && console.log('\nC-DynamicSearchScreenSqueleton / mounted...')
-    this.log && console.log('C-DynamicSearchScreenSqueleton / this.mainClass : ', this.mainClass)
-    this.log && console.log('C-DynamicSearchScreenSqueleton / this.filtersConfig : ', this.filtersConfig)
+  mounted() {
+    this.log && console.log("\nC-DynamicSearchScreenSqueleton / mounted...");
+    this.log && console.log("C-DynamicSearchScreenSqueleton / this.mainClass : ", this.mainClass);
+    this.log && console.log("C-DynamicSearchScreenSqueleton / this.filtersConfig : ", this.filtersConfig);
   },
 
   computed: {
-
     ...mapState({
-      log : state => state.log, 
-      locale : state => state.locale,
-      breakpoint : state => state.breakpoint,
+      log: (state) => state.log,
+      locale: (state) => state.locale,
+      breakpoint: (state) => state.breakpoint,
     }),
 
     ...mapGetters({
-      shrinkNav : 'getShrinkNav',
+      shrinkNav: "getShrinkNav",
     }),
-
-  }
-
-}
+  },
+};
 </script>
 
 <style lang="scss">
+@import "../../assets/css/apiviz-misc.scss";
 
-  @import '../../assets/css/apiviz-misc.scss';
+main {
+  // margin-top: $apiviz-navbar-height + $apiviz-search-bar-height;
+  margin-top: $apiviz-navbar-height + rem(60px);
+}
 
-  main{
-    // margin-top: $apiviz-navbar-height + $apiviz-search-bar-height;
-    margin-top: $apiviz-navbar-height + rem(60px);
-  }
-
-  .iframe {
-    margin-top: rem(60px) !important ;
-  }
-
+.iframe {
+  margin-top: rem(60px) !important ;
+}
 </style>

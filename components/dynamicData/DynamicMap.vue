@@ -1,62 +1,49 @@
 <template>
-  <DynamicSearchScreenSqueleton 
-    :filtersConfig="filtersConfig"
-    mainClass="list"
-    >
+  <DynamicSearchScreenSqueleton :filtersConfig="filtersConfig" mainClass="list">
     <!-- <SearchResultsMaps
       :routeConfig="routeConfig"
       :endPointConfig="endPointConfig"
     /> -->
-    <SearchResultsMapbox
-      :routeConfig="routeConfig"
-      :endPointConfig="endPointConfig"
-    />
+    <SearchResultsMapbox :routeConfig="routeConfig" :endPointConfig="endPointConfig" />
   </DynamicSearchScreenSqueleton>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState } from "vuex";
 
-import DynamicSearchScreenSqueleton from './DynamicSearchScreenSqueleton.vue'
+import DynamicSearchScreenSqueleton from "./DynamicSearchScreenSqueleton.vue";
 
 // import SearchResultsMaps from './SearchResultsMaps.vue';
-import SearchResultsMapbox from './SearchResultsMapbox.vue';
+import SearchResultsMapbox from "./SearchResultsMapbox.vue";
 
 export default {
+  name: "DynamicMap",
 
-  name: 'DynamicMap',  
+  props: ["routeConfig", "endPointConfig", "filtersConfig"],
 
-  props:[
-    'routeConfig',
-    'endPointConfig',
-    'filtersConfig',
-  ],
-
-  beforeMount : function(){
-    this.log && console.log('\nC-DynamicMap / beforeMount...')
+  beforeMount: function () {
+    this.log && console.log("\nC-DynamicMap / beforeMount...");
   },
 
   components: {
-    DynamicSearchScreenSqueleton, 
+    DynamicSearchScreenSqueleton,
     // SearchResultsMaps,
     SearchResultsMapbox,
   },
 
   computed: {
-
     ...mapState({
-      log: state => state.log, 
-      locale : state => state.locale,
-      breakpoint : state => state.breakpoint,
-      user: state => state.user.user
+      log: (state) => state.log,
+      locale: (state) => state.locale,
+      breakpoint: (state) => state.breakpoint,
+      user: (state) => state.user.user,
     }),
-
   },
-}
+};
 </script>
 
 <style>
-  .list .filter-feedback{
-    padding-bottom: 1em;
-  }
+.list .filter-feedback {
+  padding-bottom: 1em;
+}
 </style>

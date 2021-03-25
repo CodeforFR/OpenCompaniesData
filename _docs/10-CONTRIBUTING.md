@@ -1,5 +1,5 @@
 ---
-layout : single 
+layout : single
 title : CONTRIBUTING GUIDE
 # permalink : /dev/contributing
 categories:

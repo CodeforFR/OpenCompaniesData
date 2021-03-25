@@ -35,12 +35,12 @@
 
 <script>
 
-  import { mapState, mapGetters } from 'vuex'
+  import { mapState, mapGetters } from "vuex";
 
   export default {
 
     props: [
-      'logoTo',
+      "logoTo",
     ],
 
     beforeMount : function(){
@@ -56,24 +56,24 @@
       }),
 
       ...mapGetters({
-        logo : 'config/getNavbarLogo',
-        shrinkNav : 'getShrinkNav',
-        brand : 'config/getNavbarBrand'
+        logo : "config/getNavbarLogo",
+        shrinkNav : "getShrinkNav",
+        brand : "config/getNavbarBrand"
       }),
 
     },
 
     methods : {
       triggerBurger(){
-        this.$store.commit('switchNavbarMenu')
+        this.$store.commit("switchNavbarMenu");
       },
       translate( textsToTranslate, listField ) {
-        let listTexts = textsToTranslate[listField]
-        return this.$Translate( listTexts, this.locale, 'text')
+        let listTexts = textsToTranslate[listField];
+        return this.$Translate( listTexts, this.locale, "text");
       },
     }
 
-  }
+  };
 </script>
 
 <style lang="scss" scoped>

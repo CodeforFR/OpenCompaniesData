@@ -1,5 +1,5 @@
 ---
-layout : single 
+layout : single
 title : ROADMAP
 # permalink : /dev/roadmap
 # categories:

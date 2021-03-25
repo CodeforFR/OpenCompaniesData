@@ -40,7 +40,7 @@ This simplified illustration aims to explain the role of each service we usually
 
 Usually in a data-visualisation project an user owning data - aka the data producer - would like to show its original and raw data in an interactive and prettier form. The "raw data" could be a csv or excel file, or even a json.
 
-To do interactive visualisation (show charts, diagrams, maps... corresponding to the original spreadsheet), the data must be : 
+To do interactive visualisation (show charts, diagrams, maps... corresponding to the original spreadsheet), the data must be :
 
 #### uploaded online
 
@@ -58,5 +58,4 @@ this is the data-visualisation part of the process. The search engine fetches da
 
 Optionnaly during the second part the data could be enriched from other sources (like adding geo-location to a dataset containing only adresses as text)
 
-Under the "hood" several other services are usually necessary for all those processes to run smoothly, in particular when some users are allowed to modify the original dataset or the data-visualisation configurations. As such authentication services are often required to check the user's rights on the datasets, whichever action is done on any part of the process. 
-
+Under the "hood" several other services are usually necessary for all those processes to run smoothly, in particular when some users are allowed to modify the original dataset or the data-visualisation configurations. As such authentication services are often required to check the user's rights on the datasets, whichever action is done on any part of the process.

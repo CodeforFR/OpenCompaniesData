@@ -1,5 +1,5 @@
 ---
-layout : single 
+layout : single
 title : INSTALL THE DOCS WITH JEKYLL
 # permalink : /docs/install-docs
 # categories:
@@ -22,7 +22,7 @@ gem install jekyll
 ```
 
 ---
-- Install setup 
+- Install setup
 
 ``` bash
 gem install bundler
@@ -32,13 +32,12 @@ bundle update
 ```
 
 ---
-- Launch server 
+- Launch server
 
 ``` bash
 jekyll serve
 ```
 
-... then check in your browser : 
+... then check in your browser :
 
 [`127.0.0.1:4000`](127.0.0.1:4000)
-

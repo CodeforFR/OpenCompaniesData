@@ -130,6 +130,7 @@
               </h1>
               <p v-for="year in displayableEnthicData.yearData">
                 {{ year.year }}
+              </p>
               <ul>
                 <li v-for="data in year.data">{{ data.description }} : {{ data.value }}</li>
               </ul>
@@ -561,23 +562,23 @@
 
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters } from "vuex";
 
-import NotFoundError from './NotFoundError.vue';
+import NotFoundError from "./NotFoundError.vue";
 
 // import { getItemById } from '~/plugins/utils.js';
-import { getItemContent, getDefaultImage } from '~/plugins/utils.js';
-import { BasicDictionnary } from "~/config/basicDict.js"
+import { getItemContent, getDefaultImage } from "~/plugins/utils.js";
+import { BasicDictionnary } from "~/config/basicDict.js";
 
-import VueApexCharts from 'vue-apexcharts'
+import VueApexCharts from "vue-apexcharts";
 
-import ForceNetworkGraph from './ForceNetworkGraph.vue'
-import TreeView from './TreeView.vue'
-import FoldingArray from './FoldingArray.vue'
+import ForceNetworkGraph from "./ForceNetworkGraph.vue";
+import TreeView from "./TreeView.vue";
+import FoldingArray from "./FoldingArray.vue";
 
 export default {
 
-  name: 'DynamicDetail',
+  name: "DynamicDetail",
 
   components: {
     NotFoundError,
@@ -588,8 +589,8 @@ export default {
   },
 
   props: [
-    'routeConfig',
-    'endPointConfig',
+    "routeConfig",
+    "endPointConfig",
   ],
 
   data: () => {
@@ -597,29 +598,29 @@ export default {
       contentFields : null,
       isError: false,
       basicDict : BasicDictionnary
-    }
+    };
   },
 
   beforeMount: function () {
-    this.log && console.log("\n - - DynamicDetail / beforeMount ... ")
-    this.contentFields = this.routeConfig.contents_fields
+    this.log && console.log("\n - - DynamicDetail / beforeMount ... ");
+    this.contentFields = this.routeConfig.contents_fields;
   },
 
   mounted(){
     // hack to scroll top because vue-router scrollBehavior thing doesn't seem to work on Firefox on Linux at least
-    this.log && console.log(" - - DynamicDetail / mounted... ")
+    this.log && console.log(" - - DynamicDetail / mounted... ");
     const int = setInterval(() => {
       if(window.pageYOffset < 50){
-        clearInterval(int)
+        clearInterval(int);
       }
       else{
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
       }
     }, 100);
 
-    this.log && console.log(" - - DynamicDetail / mounted / this.$nuxt.$route : ", this.$nuxt.$route )
+    this.log && console.log(" - - DynamicDetail / mounted / this.$nuxt.$route : ", this.$nuxt.$route );
     if (this.$nuxt.$route.query.id) {
-      this.$store.dispatch('search/searchOne', this.$nuxt.$route.query.id)
+      this.$store.dispatch("search/searchOne", this.$nuxt.$route.query.id);
     }
   },
 
@@ -633,23 +634,23 @@ export default {
     }),
 
     ...mapGetters({
-      displayableItem : 'search/getDisplayedProject',
-      filterDescriptions : 'search/getFilterDescriptions',
+      displayableItem : "search/getDisplayedProject",
+      filterDescriptions : "search/getFilterDescriptions",
     }),
 
     // POSITIONS TO BE FILLED
     listOfPositions() {
       // this.log && console.log("listOfPositions /  this.contentFields.map( c => c.position ) :", this.contentFields.map( c => c.position ))
-      return this.contentFields.map( c => c.position )
+      return this.contentFields.map( c => c.position );
     },
 
     // TEXT TRANSLATORS - NO DATA
     noData() {
-      return this.$store.getters['config/defaultText']({txt:'no_data'})
+      return this.$store.getters["config/defaultText"]({txt:"no_data"});
     },
 
     tidyRepresentants(){
-      let representantsStreamlined = {"P.Physique" : new Map(), "P. Morale" : new Map()}
+      let representantsStreamlined = {"P.Physique" : new Map(), "P. Morale" : new Map()};
       for (const representant of this.displayableItem.RncsImr.representants) {
         // Personne physique
         if(["P.Physique", "P. Physique"].includes(representant.type_representant))
@@ -679,7 +680,7 @@ export default {
       }
       this.log && console.log(" - - DynamicDetail / computed / tidyRepresentants :", representantsStreamlined);
 
-      let result = { nodes: [{id: this.displayableItem.CompanyNumber, name: this.displayableItem.Name}] , links : []}
+      let result = { nodes: [{id: this.displayableItem.CompanyNumber, name: this.displayableItem.Name}] , links : []};
       for (var physique of representantsStreamlined["P.Physique"])
       {
         var representantPhysique = physique[1][0];
@@ -692,25 +693,25 @@ export default {
         else {
           nodeLabel += "\n Pays:" + representantPhysique.adresse_pays;
         }
-        var nodeColor = 'orange';
+        var nodeColor = "orange";
         // Create one node per physical person
-        var newNode = {id: nodeId.toString(), name: nodeLabel, _color : nodeColor}
+        var newNode = {id: nodeId.toString(), name: nodeLabel, _color : nodeColor};
         result.nodes.push(newNode);
         for (var rep of physique[1])
         {
           // Create one link per "qualité"
-          result.links.push({source: result.nodes[0], target: newNode, name: rep.qualite + "\n au " + representantPhysique.date_derniere_modification, _color : 'red' });
+          result.links.push({source: result.nodes[0], target: newNode, name: rep.qualite + "\n au " + representantPhysique.date_derniere_modification, _color : "red" });
         }
       }
 
       for (var morale of representantsStreamlined["P. Morale"])
       {
         var nodeId = morale[0];
-        var nodeColor = 'f0f';
+        var nodeColor = "f0f";
         var nodeLabel = morale[0] + "\n représenté par ";
         if(morale[1][0].siren_pm != null)
         {
-           nodeColor = 'f0f';
+           nodeColor = "f0f";
            nodeId = morale[1][0].siren_pm;
         }
         var qualiteMap = new Map();
@@ -728,69 +729,69 @@ export default {
         {
           nodeLabel += qualite[1] + " " + qualite[0] + ";";
         }
-        var newNode = {id: nodeId.toString(), name: nodeLabel, _color : nodeColor}
+        var newNode = {id: nodeId.toString(), name: nodeLabel, _color : nodeColor};
         result.nodes.push(newNode);
-        result.links.push({source: result.nodes[0], target: newNode, name: "vache", _color : 'red' });
+        result.links.push({source: result.nodes[0], target: newNode, name: "vache", _color : "red" });
       }
 
-      return result
+      return result;
     },
 
     displayableEnthicData(){
       var formatter = new Intl.NumberFormat(undefined, {
         minimumFractionDigits: 0
       });
-      let displayableEnthicData = { flatData : {}, yearData : []}
+      let displayableEnthicData = { flatData : {}, yearData : []};
       for (var property in this.displayableItem.Enthic){
         if (["siren", "ape", "postal_code", "town"].includes(property) ){
-          displayableEnthicData.flatData[property] = this.displayableItem.Enthic[property]
+          displayableEnthicData.flatData[property] = this.displayableItem.Enthic[property];
         }
       }
       for ( let enthicDeclaration of  this.displayableItem.Enthic.declarations)
       {
-        let yearData = { year : enthicDeclaration.declaration.value, data : {} }
+        let yearData = { year : enthicDeclaration.declaration.value, data : {} };
         for (var yearProp in enthicDeclaration.financial_data_refined)
         {
           yearData.data[yearProp] = { description : enthicDeclaration.financial_data_refined[yearProp].description,
                                       value : formatter.format(enthicDeclaration.financial_data_refined[yearProp].value)
-                                    }
+                                    };
         }
-        displayableEnthicData.yearData.push(yearData)
+        displayableEnthicData.yearData.push(yearData);
       }
-      this.log && console.log(" - - DynamicDetail / computed / displayableEnthicData :", displayableEnthicData)
-      return displayableEnthicData
+      this.log && console.log(" - - DynamicDetail / computed / displayableEnthicData :", displayableEnthicData);
+      return displayableEnthicData;
     },
 
     chartDetails(){
       // Find perfect unit for CA graphic (€, k€ or M€)
-      var beneficeItem = this.displayableItem.Enthic.comptesDeResultats[0]
+      var beneficeItem = this.displayableItem.Enthic.comptesDeResultats[0];
       var factorCA = 1;
-      var unitCA = '€';
-      var CADeReference = beneficeItem.children.ResultatAvantImpot.children.ResultatExploitation.children.ProduitsExploitation.children.ChiffresAffairesNet.data.value
+      var unitCA = "€";
+      var CADeReference = beneficeItem.children.ResultatAvantImpot.children.ResultatExploitation.children.ProduitsExploitation.children.ChiffresAffairesNet.data.value;
       if (CADeReference > 10000000){
         var factorCA = 1000000;
-        var unitCA = 'millions d\'€';
+        var unitCA = "millions d'€";
       }
       else if (CADeReference > 300000) {
         var factorCA = 1000;
-        var unitCA = 'milliers d\'€';
+        var unitCA = "milliers d'€";
       }
 
       // Find perfect unit for margin graphic (€, k€ or M€)
       var factor = 1;
-      var unitMargin = '€';
-      var resultatDeReference = beneficeItem.children.ResultatAvantImpot.children.ResultatExploitation.data.value
+      var unitMargin = "€";
+      var resultatDeReference = beneficeItem.children.ResultatAvantImpot.children.ResultatExploitation.data.value;
       if (isNaN(resultatDeReference))
       {
-        resultatDeReference = beneficeItem.data.value
+        resultatDeReference = beneficeItem.data.value;
       }
       if (resultatDeReference > 3000000 || resultatDeReference < -3000000){
         var factor = 1000000;
-        var unitMargin = 'millions d\'€';
+        var unitMargin = "millions d'€";
       }
       else if (resultatDeReference > 30000 || resultatDeReference < -100000) {
         var factor = 1000;
-        var unitMargin = 'milliers d\'€';
+        var unitMargin = "milliers d'€";
       }
 
       var xLabels = [];
@@ -800,7 +801,7 @@ export default {
         Participation : [],
         ImpotsSurLesSocietes : [],
         resultatPourProprietaire : []
-      }
+      };
 
       var dataSeriesCA = {
         salaires : [],
@@ -809,51 +810,51 @@ export default {
         marchandisesTotalAfficher : [],
         autreChargesMoinsAutresProduitsAffiches : [],
         resultatExploitation : []
-      }
+      };
       var euroFormatter = new Intl.NumberFormat(undefined, {
-        style: 'currency',
-        currency: 'EUR',
+        style: "currency",
+        currency: "EUR",
         minimumFractionDigits: 0
       });
-      var listOfUndisplayableData = []
-      var showResultatExploitation = true
-      var showTaxeVsSubvention = true
+      var listOfUndisplayableData = [];
+      var showResultatExploitation = true;
+      var showTaxeVsSubvention = true;
       for(var i = 0; i < this.displayableItem.Enthic.comptesDeResultats.length; i++){
-          xLabels.push(this.displayableItem.Enthic.comptesDeResultats[i].year)
+          xLabels.push(this.displayableItem.Enthic.comptesDeResultats[i].year);
 
           // Local variables for code visibility
-          var rootItem = this.displayableItem.Enthic.comptesDeResultats[i]
-          var resultExploit = rootItem.children.ResultatAvantImpot.children.ResultatExploitation
-          var produits = resultExploit.children.ProduitsExploitation
-          var charges = resultExploit.children.ChargesExploitation
+          var rootItem = this.displayableItem.Enthic.comptesDeResultats[i];
+          var resultExploit = rootItem.children.ResultatAvantImpot.children.ResultatExploitation;
+          var produits = resultExploit.children.ProduitsExploitation;
+          var charges = resultExploit.children.ChargesExploitation;
 
           // Get all needed values for first graphic (about Chiffre d'Affaire)
-          var impotsEtAssimiles = this.cleanUndefinedDataForGraphicalDisplay(charges.children.ImpotTaxesEtVersementsAssimiles, listOfUndisplayableData, xLabels[i])
-          var subventions = this.cleanUndefinedDataForGraphicalDisplay(produits.children.SubventionsExploitation, listOfUndisplayableData, xLabels[i])
-          var achatMarchandises = this.cleanUndefinedDataForGraphicalDisplay(charges.children.AchatsDeMarchandises, listOfUndisplayableData, xLabels[i])
-          var variationMarchandises = this.cleanUndefinedDataForGraphicalDisplay(charges.children.VariationStockMarchandises, listOfUndisplayableData, xLabels[i])
-          var achatMatierePremiere = this.cleanUndefinedDataForGraphicalDisplay(charges.children.AchatMatierePremiereAutreAppro, listOfUndisplayableData, xLabels[i])
-          var variationMatierePremiere = this.cleanUndefinedDataForGraphicalDisplay(charges.children.VariationStockMatierePremiereEtAppro, listOfUndisplayableData, xLabels[i])
-          var salaire = this.cleanUndefinedDataForGraphicalDisplay(charges.children.SalairesEtTraitements, listOfUndisplayableData, xLabels[i])
-          var cotisation = this.cleanUndefinedDataForGraphicalDisplay(charges.children.ChargesSociales, listOfUndisplayableData, xLabels[i])
-          var resultatExploitation = this.cleanUndefinedDataForGraphicalDisplay(resultExploit, listOfUndisplayableData, xLabels[i])
+          var impotsEtAssimiles = this.cleanUndefinedDataForGraphicalDisplay(charges.children.ImpotTaxesEtVersementsAssimiles, listOfUndisplayableData, xLabels[i]);
+          var subventions = this.cleanUndefinedDataForGraphicalDisplay(produits.children.SubventionsExploitation, listOfUndisplayableData, xLabels[i]);
+          var achatMarchandises = this.cleanUndefinedDataForGraphicalDisplay(charges.children.AchatsDeMarchandises, listOfUndisplayableData, xLabels[i]);
+          var variationMarchandises = this.cleanUndefinedDataForGraphicalDisplay(charges.children.VariationStockMarchandises, listOfUndisplayableData, xLabels[i]);
+          var achatMatierePremiere = this.cleanUndefinedDataForGraphicalDisplay(charges.children.AchatMatierePremiereAutreAppro, listOfUndisplayableData, xLabels[i]);
+          var variationMatierePremiere = this.cleanUndefinedDataForGraphicalDisplay(charges.children.VariationStockMatierePremiereEtAppro, listOfUndisplayableData, xLabels[i]);
+          var salaire = this.cleanUndefinedDataForGraphicalDisplay(charges.children.SalairesEtTraitements, listOfUndisplayableData, xLabels[i]);
+          var cotisation = this.cleanUndefinedDataForGraphicalDisplay(charges.children.ChargesSociales, listOfUndisplayableData, xLabels[i]);
+          var resultatExploitation = this.cleanUndefinedDataForGraphicalDisplay(resultExploit, listOfUndisplayableData, xLabels[i]);
 
           // Affichage des taxes uniquement si elles sont supérieures aux subventions
           if (impotsEtAssimiles < subventions) {
-            dataSeriesCA.taxesMoinsSubventions[i] = 0
-            listOfUndisplayableData.push("subventions (" + euroFormatter.format(subventions) + ") supérieur aux taxes (" + euroFormatter.format(impotsEtAssimiles) + ") en " + xLabels[i])
-            showTaxeVsSubvention = false
+            dataSeriesCA.taxesMoinsSubventions[i] = 0;
+            listOfUndisplayableData.push("subventions (" + euroFormatter.format(subventions) + ") supérieur aux taxes (" + euroFormatter.format(impotsEtAssimiles) + ") en " + xLabels[i]);
+            showTaxeVsSubvention = false;
           }
           else {
-            dataSeriesCA.taxesMoinsSubventions.push(impotsEtAssimiles - subventions)
+            dataSeriesCA.taxesMoinsSubventions.push(impotsEtAssimiles - subventions);
           }
 
           // Display only if positive
           if (resultatExploitation < 0 )
           {
-            showResultatExploitation = false
-            resultatExploitation = 0
-            listOfUndisplayableData.push("résultat d'exploitation négatif en " + xLabels[i])
+            showResultatExploitation = false;
+            resultatExploitation = 0;
+            listOfUndisplayableData.push("résultat d'exploitation négatif en " + xLabels[i]);
           }
 
           // Compute other complexe data to display
@@ -877,50 +878,50 @@ export default {
 
       // Build data series to pass to graphical plugin
       let seriesCA = [ {
-          name: 'Autres charges retranchées des autres produits',
+          name: "Autres charges retranchées des autres produits",
           data: dataSeriesCA.autreChargesMoinsAutresProduitsAffiches
         }, {
-          name: 'Salaires Bruts',
+          name: "Salaires Bruts",
           data: dataSeriesCA.salaires
         }, {
-          name: 'Cotisations Sociales',
+          name: "Cotisations Sociales",
           data: dataSeriesCA.cotisationSociale
         }, {
-          name: 'Achat de marchandises, matières premières et autre approvisionnement',
+          name: "Achat de marchandises, matières premières et autre approvisionnement",
           data: dataSeriesCA.marchandisesTotalAfficher
-        }]
+        }];
       if (showTaxeVsSubvention)
       {
-        console.log("showing taxe and sub")
+        console.log("showing taxe and sub");
         seriesCA.push({
-          name: 'Taxes diverses retranchées des subventions',
+          name: "Taxes diverses retranchées des subventions",
           data: dataSeriesCA.taxesMoinsSubventions
-        })
+        });
       }
       if (showResultatExploitation)
       {
         seriesCA.push({
-          name: 'Résultat d\'exploitation (marge de l\'entreprise)',
+          name: "Résultat d'exploitation (marge de l'entreprise)",
           data: dataSeriesCA.resultatExploitation
-        })
+        });
       }
       let seriesMargin = [{
-          name: 'Participation',
+          name: "Participation",
           data: dataSeriesMargin.Participation
         }, {
-          name: 'Impôts',
+          name: "Impôts",
           data: dataSeriesMargin.ImpotsSurLesSocietes
         }, {
-          name: 'Bénéfices',
+          name: "Bénéfices",
           data: dataSeriesMargin.resultatPourProprietaire
         }, {
-          name: 'Résultats financier et exceptionnel',
+          name: "Résultats financier et exceptionnel",
           data: dataSeriesMargin.resultatExceptionnelEtFinancier
-        }]
+        }];
 
       let chartOptionsCA = {
           chart: {
-            type: 'bar',
+            type: "bar",
             height: 350,
             stacked: true,
             toolbar: {
@@ -934,7 +935,7 @@ export default {
             breakpoint: 480,
             options: {
               legend: {
-                position: 'bottom',
+                position: "bottom",
                 offsetX: -5,
                 offsetY: 0
               }
@@ -958,17 +959,17 @@ export default {
             }
           },
           legend: {
-            position: 'right',
+            position: "right",
             offsetY: 40
           },
           fill: {
             opacity: 1
           }
-        }
+        };
 
       let chartOptionsMargin = {
           chart: {
-            type: 'bar',
+            type: "bar",
             height: 350,
             stacked: false,
             toolbar: {
@@ -982,7 +983,7 @@ export default {
             breakpoint: 480,
             options: {
               legend: {
-                position: 'bottom',
+                position: "bottom",
                 offsetX: -10,
                 offsetY: 0
               }
@@ -1006,14 +1007,14 @@ export default {
             }
           },
           legend: {
-            position: 'right',
+            position: "right",
             offsetY: 40
           },
           fill: {
             opacity: 1
           }
-        }
-      this.log && console.log(" - - DynamicDetail / computed / chartDetails :", seriesCA)
+        };
+      this.log && console.log(" - - DynamicDetail / computed / chartDetails :", seriesCA);
 
       return {
         seriesMargin: seriesMargin,
@@ -1021,23 +1022,23 @@ export default {
         chartOptionsCA: chartOptionsCA,
         chartOptionsMargin: chartOptionsMargin,
         undisplayables : listOfUndisplayableData
-      }
+      };
     },
 
     lastEffectif(){
-      this.log && console.log(" - - DynamicDetail / computed / lastEffectif :", this.displayableEnthicData.yearData)
-      var lastEffectif = "Nombre de salarié⋅es non déclaré :-("
-      var lastYear = 0
+      this.log && console.log(" - - DynamicDetail / computed / lastEffectif :", this.displayableEnthicData.yearData);
+      var lastEffectif = "Nombre de salarié⋅es non déclaré :-(";
+      var lastYear = 0;
       for (var year of this.displayableEnthicData.yearData)
       {
         if (year.year > lastYear && year.data.YP)
         {
-          lastYear = year.year
-          lastEffectif = year.data.YP.value + " salarié⋅es en moyenne sur " + year.year
+          lastYear = year.year;
+          lastEffectif = year.data.YP.value + " salarié⋅es en moyenne sur " + year.year;
         }
-        this.log && console.log(" - - DynamicDetail / computed / lastEffectif :", year)
+        this.log && console.log(" - - DynamicDetail / computed / lastEffectif :", year);
       }
-      return lastEffectif
+      return lastEffectif;
     }
   },
 
@@ -1045,58 +1046,58 @@ export default {
     cleanUndefinedDataForGraphicalDisplay(item, undefinedDataList, year){
       if (isNaN(item.data.value))
       {
-        undefinedDataList.push(item.name + " non fournis pour l'année " + year)
-        return 0
+        undefinedDataList.push(item.name + " non fournis pour l'année " + year);
+        return 0;
       }
-      return item.data.value
+      return item.data.value;
     },
 
     getDefaultText(txt_code){
-      return this.$store.getters['config/defaultText']({txt:txt_code})
+      return this.$store.getters["config/defaultText"]({txt:txt_code});
     },
 
     isPositionFilled(fieldBlock){
       // this.log && console.log("isPositionFilled /  fieldBlock :", fieldBlock)
-      return this.listOfPositions.indexOf(fieldBlock) !== -1
+      return this.listOfPositions.indexOf(fieldBlock) !== -1;
     },
 
     itemImage(fieldBlock){
-      let image = this.matchProjectWithConfig(fieldBlock)
+      let image = this.matchProjectWithConfig(fieldBlock);
       if ( !image ){
-        let idFieldObject = this.contentFields.find( c => c.position === 'block_id' )
+        let idFieldObject = this.contentFields.find( c => c.position === "block_id" );
         // let idField = idFieldObject.field
-        let idField = idFieldObject ? idFieldObject.field : 'sd_id'
-        let d = this.$store.getters['config/getRouteConfigDefaultDatasetImages']
-        let image_default = getDefaultImage(d, this.displayableItem, idField)
-        image = image_default
+        let idField = idFieldObject ? idFieldObject.field : "sd_id";
+        let d = this.$store.getters["config/getRouteConfigDefaultDatasetImages"];
+        let image_default = getDefaultImage(d, this.displayableItem, idField);
+        image = image_default;
       }
-      return image
+      return image;
     },
 
     matchProjectWithConfig(fieldBlock) {
-      return getItemContent(fieldBlock, this.displayableItem, this.contentFields, this.noData, this.filterDescriptions, this.locale)
+      return getItemContent(fieldBlock, this.displayableItem, this.contentFields, this.noData, this.filterDescriptions, this.locale);
     },
 
     getCustomBlockTitle(fieldBlock){
-      let customBlockTitle = undefined
-      const contentField = this.contentFields.find(f=> f.position == fieldBlock)
+      let customBlockTitle = undefined;
+      const contentField = this.contentFields.find(f=> f.position == fieldBlock);
       if (contentField){
-        customBlockTitle = contentField.custom_title
+        customBlockTitle = contentField.custom_title;
       }
-      return customBlockTitle
+      return customBlockTitle;
     },
 
     projectId() {
-      return this.matchProjectWithConfig('block_id')
+      return this.matchProjectWithConfig("block_id");
     },
 
     goBack(e){
-      e.preventDefault()
-      this.$router.back()
+      e.preventDefault();
+      this.$router.back();
     }
   },
 
-}
+};
 </script>
 
 

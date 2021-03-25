@@ -1,5 +1,5 @@
 ---
-layout : single 
+layout : single
 title : DEPLOYMENT CONFIGURATIONS
 # permalink : /meta/changelog
 categories:

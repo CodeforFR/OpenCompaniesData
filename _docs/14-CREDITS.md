@@ -1,5 +1,5 @@
 ---
-layout : single 
+layout : single
 title : CREDITS
 # permalink : /meta/credits
 categories:
@@ -20,10 +20,10 @@ sidebar:
 - the [CGET](http://www.cget.gouv.fr/)
 - the [MedNum](https://lamednum.coop)
 - the [Mission Société Numérique](https://societenumerique.gouv.fr)
-- and all those who believed and helped in this project : 
+- and all those who believed and helped in this project :
     - Christophe N.
     - Damla S.
-    - Bastien G. 
-    - Mathilde B. 
+    - Bastien G.
+    - Mathilde B.
     - Rémy S.
     - Cécile B.
